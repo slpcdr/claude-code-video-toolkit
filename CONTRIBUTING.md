@@ -74,6 +74,16 @@ Thank you for your interest in contributing! This toolkit is designed to help pe
 4. Update documentation if needed
 5. Submit a PR with a clear description
 
+## Toolkit Tracking Files
+
+| File | Purpose |
+|------|---------|
+| `_internal/ROADMAP.md` | What we're building (phases, current work) |
+| `_internal/BACKLOG.md` | What we might build (unscheduled ideas) |
+| `_internal/CHANGELOG.md` | What we built (historical record) |
+
+For more details on the toolkit's evolution principles and local contribution workflow, see `docs/contributing.md`.
+
 ## Questions?
 
 Open an issue for questions or discussions.

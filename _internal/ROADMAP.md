@@ -2,7 +2,9 @@
 
 This document tracks the development of claude-code-video-toolkit.
 
-> **Note:** When committing progress, update `_internal/CHANGELOG.md` with changes before pushing.
+**Repository:** https://github.com/digitalsamba/claude-code-video-toolkit
+
+---
 
 ## Vision
 
@@ -12,8 +14,6 @@ An open-source, AI-native video production workspace for Claude Code, featuring:
 - Claude skills providing deep domain knowledge
 - Automated asset pipelines (recording, conversion, audio generation)
 - Slash commands for guided workflows
-
-**Repository:** https://github.com/digitalsamba/claude-code-video-toolkit
 
 ---
 
@@ -30,7 +30,7 @@ An open-source, AI-native video production workspace for Claude Code, featuring:
 
 - [x] Sprint review template with theme system
 - [x] Config-driven video content
-- [x] `/video` slash command (unified project creation, replaced `/new-video`)
+- [x] `/video` slash command (unified project creation)
 - [x] Narrator PiP component
 - [x] Remotion skill (stable)
 - [x] ElevenLabs skill (stable)
@@ -38,106 +38,82 @@ An open-source, AI-native video production workspace for Claude Code, featuring:
 ### Phase 2: Skills & Automation ✅ COMPLETE
 
 **Skills:**
-- [x] FFmpeg skill (beta) - common video/audio conversions
-- [x] Playwright recording skill (beta) - browser demo capture
-- [x] Review and validate FFmpeg skill
-- [x] Review and validate Playwright skill
+- [x] FFmpeg skill (beta)
+- [x] Playwright recording skill (beta)
 
 **Python Tools:**
-- [x] `voiceover.py` - CLI for ElevenLabs TTS generation
-- [x] `music.py` - CLI for background music generation
-- [x] `sfx.py` - CLI for sound effects with presets
-- [x] `config.py` - Shared configuration (env vars + registry fallback)
+- [x] `voiceover.py` - CLI for ElevenLabs TTS
+- [x] `music.py` - CLI for background music
+- [x] `sfx.py` - CLI for sound effects
 
 **Commands:**
 - [x] `/generate-voiceover` - streamlined audio generation
 - [x] `/record-demo` - guided Playwright recording
-- [x] `/video-status` - replaced by `/video` with built-in project scanning
 
 **Infrastructure:**
 - [x] Playwright recording setup (`playwright/`)
-- [x] Centralize voice ID (env var with registry fallback)
+- [x] Centralized config (env var with registry fallback)
 
 ### Phase 2.5: Open Source Release ✅ COMPLETE
 
 - [x] Directory restructure for public release
-  - `templates/` - video templates
-  - `projects/` - user video projects
-  - `brands/` - brand profiles
-  - `docs/` - documentation
-  - `_internal/` - toolkit metadata (renamed from `_toolkit/`)
-- [x] Brand profiles system (`brands/default/`)
-  - `brand.json` - colors, fonts, typography
-  - `voice.json` - ElevenLabs voice settings
-  - `assets/` - logos, backgrounds
-- [x] Secrets audit and `.gitignore`
-- [x] Environment variable support (`ELEVENLABS_VOICE_ID`)
+- [x] Brand profiles system (`brands/`)
+- [x] Environment variable support
 - [x] README, LICENSE (MIT), CONTRIBUTING.md
-- [x] Documentation (`docs/getting-started.md`, `creating-brands.md`, `creating-templates.md`)
-- [x] GitHub repo: digitalsamba/claude-code-video-toolkit
-- [x] Initial commit and push
+- [x] Documentation (`docs/`)
+- [x] GitHub repo published
 
 ### Phase 3: Templates & Brands 🔄 IN PROGRESS
 
 **Brand Profiles:**
 - [x] Default brand profile
-- [x] Digital Samba brand profile (public example)
-  - [x] Extract colors from digitalsamba.com
-  - [x] Add DS logos to `brands/digital-samba/assets/`
-  - [x] Configure voice settings
-- [x] `/brand` command (replaced `/new-brand`) - list, edit, or create brands
-  - [x] Mine colors/fonts from URL
-  - [x] Interactive color picker
-  - [x] Logo upload guidance
-  - [x] Voice selection
+- [x] Digital Samba brand profile
+- [x] `/brand` command - list, edit, or create brands
 
 **Templates:**
-- [x] Product demo template (extract from digital-samba-skill-demo)
-- [x] `/video` command (replaced `/new-video`) - unified project management
+- [x] Product demo template
+- [x] `/video` command - unified project management
 - [x] `/template` command - list available templates
-- [x] Shared component library (`lib/`) ⭐
-  - [x] Theme system (`lib/theme/`) - ThemeProvider, useTheme, types
-  - [x] Core components (`lib/components/`) - AnimatedBackground, SlideTransition, Label, Vignette, LogoWatermark, SplitScreen
-  - [x] Animation components - Envelope (3D opening animation), PointingHand (directional pointer with pulse)
-  - [x] NarratorPiP (needs refinement - different APIs in templates)
-  - [x] Templates updated to import from lib
+- [x] Shared component library (`lib/`)
 - [ ] Tutorial template
 - [ ] Changelog/release notes template
 
 **Template-Brand Integration:**
 - [x] Brand loader utility (`lib/brand.ts`)
-- [x] Templates use `brand.ts` for theming (generated at project creation)
+- [x] Templates use `brand.ts` for theming
 - [x] `/video` generates brand.ts from selected brand
-- [x] project.json tracks brand selection
 
 **Multi-Session Project System:**
-- [x] Project schema (`lib/project/types.ts`) - phases, scenes, assets, session history
-- [x] Filesystem reconciliation (compare project.json intent vs actual files)
+- [x] Project schema (`lib/project/types.ts`)
+- [x] Filesystem reconciliation
 - [x] Auto-generated CLAUDE.md per project
-- [x] `/skills` command - list installed skills or create new ones (renamed from `/skill` due to Claude Code conflict)
-- [x] Contribution/feedback prompts in all commands and skills
+- [x] `/skills` command
+
+**Review & Validation (integrated into `/video`):**
+- [ ] Scene-by-scene review flow within `/video` resume
+  - Pre-voiceover review (story, assets, script)
+  - Pre-render review (timing, sync, polish)
+  - Asset validation (ffprobe checks)
+  - Enhancement suggestions
+  - Note: Standalone `/review` command removed - clashed with Claude Code built-in PR review
 
 **Contribution & Examples:**
-- [x] `/contribute` command - guided contribution workflow
-- [x] `examples/` directory for shareable showcase projects
-- [x] Contributor recognition with backlinks (CONTRIBUTORS.md)
-- [x] Evolution narrative across all commands
-- [x] FEEDBACK.md for capturing improvement ideas
-- [x] Example: digital-samba-skill-demo (with finished video link)
-- [x] Example: sprint-review-cho-oyu (with finished video link)
+- [x] `/contribute` command
+- [x] `examples/` directory
+- [x] CONTRIBUTORS.md
+
+**Testing:**
+- [x] Test new project creation with scene-centric flow
+- [ ] Test project resumption (multi-session)
+- [ ] Verify filesystem reconciliation
+- [x] Verify CLAUDE.md auto-generation
 
 ### Phase 4: Polish & Advanced
-
-**Commands:**
-- [x] ~~`/video-status`~~ - replaced by `/video` with built-in scanning
-- [x] ~~`/convert-asset`~~ - removed, FFmpeg skill handles conversationally
-- [x] ~~`/sync-timing`~~ - removed, timing knowledge in CLAUDE.md
 
 **Output & Accessibility:**
 - [ ] Multi-format output (MP4, WebM, GIF, social formats)
 - [ ] Subtitle generation from voiceover scripts
 - [ ] Thumbnail auto-generation
-- [ ] Pre-render validation command
 
 **Skills:**
 - [ ] Video accessibility skill
@@ -183,42 +159,22 @@ An open-source, AI-native video production workspace for Claude Code, featuring:
 
 ## Metrics
 
-**Templates:** 2 (sprint-review, product-demo)
-**Brands:** 2 (default, digital-samba)
-**Skills:** 4 (2 stable, 2 beta)
-**Tools:** 3 (voiceover, music, sfx)
-**Commands:** 7 (video, brand, template, skill, contribute, record-demo, generate-voiceover)
-**Shared Components:** 9 (AnimatedBackground, SlideTransition, Label, Vignette, LogoWatermark, SplitScreen, NarratorPiP, Envelope, PointingHand)
-**Examples:** 2 with finished video links (digital-samba-skill-demo, sprint-review-cho-oyu)
+| Category | Count | Items |
+|----------|-------|-------|
+| Templates | 2 | sprint-review, product-demo |
+| Brands | 2 | default, digital-samba |
+| Skills | 4 | 2 stable, 2 beta |
+| Tools | 3 | voiceover, music, sfx |
+| Commands | 7 | video, brand, template, skills, contribute, record-demo, generate-voiceover |
+| Components | 9 | AnimatedBackground, SlideTransition, Label, Vignette, LogoWatermark, SplitScreen, NarratorPiP, Envelope, PointingHand |
+| Examples | 2 | digital-samba-skill-demo, sprint-review-cho-oyu |
 
 ---
 
-## Next Actions
+## Related Files
 
-1. **Upload example videos to YouTube** (optional, for discoverability)
-2. **Test `/video` workflow end-to-end** (in progress)
-   - [x] Test new project creation with scene-centric flow
-   - [ ] Test project resumption (multi-session)
-   - [ ] Verify filesystem reconciliation
-   - [x] Verify CLAUDE.md auto-generation
-   - [x] Fixed recording script issues (control panel in video, navigation stopping, cookie banners)
-   - [x] Updated playwright-recording skill with learnings
-3. Document narrator video creation workflow (see BACKLOG.md)
-4. Create tutorial template
-5. Promote ffmpeg and playwright-recording skills to stable after testing
-6. **Documentation improvements** (from 2025-12-10 review)
-   - [ ] Add `tools/README.md` for Python utilities
-   - [ ] Add `lib/components/README.md` or implement `/components` command
-   - [ ] Add troubleshooting guide to docs/
-   - [ ] Consider video tutorial for getting started
-
-## In Progress
-
-**Video Project:** `projects/digital-samba-free-intro/`
-- Product demo for Digital Samba Free
-- Signup demo recorded (26s)
-- Email confirmation scene added (envelope + pointing hand animation)
-- Dashboard tour pending
-- Then voiceover generation
-
-**Backlog item:** `/components` command for browsing reusable animation components (see BACKLOG.md)
+| File | Purpose |
+|------|---------|
+| `BACKLOG.md` | Unscheduled ideas and future enhancements |
+| `CHANGELOG.md` | Historical record of changes |
+| `toolkit-registry.json` | Machine-readable inventory |

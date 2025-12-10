@@ -8,8 +8,19 @@ All notable changes to claude-code-video-toolkit.
 
 ## 2025-12-10
 
+### Changed
+- **Consolidated tracking files** - Simplified from 4 files to 3:
+  - `ROADMAP.md` - What we're building (removed duplicate "Next Actions" and "In Progress" sections)
+  - `BACKLOG.md` - What we might build (removed all implemented items, now only future ideas)
+  - `CHANGELOG.md` - What we built (historical record)
+  - Removed `FEEDBACK.md` - Evolution principles moved to `docs/contributing.md`
+- Created `docs/contributing.md` with evolution principles and contribution workflow
+
 ### Fixed
 - **Slash commands not loading** - Renamed `/skill` to `/skills` to avoid conflict with built-in `Skill` tool. The naming collision was silently preventing ALL custom commands from loading. Bug reported to Anthropic.
+
+### Removed
+- **`/review` command** - Clashed with Claude Code's built-in PR review command. Scene-by-scene review will be integrated into `/video` resume flow instead.
 
 ### Added
 - **Animation components** (`lib/components/`)
@@ -22,10 +33,9 @@ All notable changes to claude-code-video-toolkit.
   - Safety checks to exclude private project work
 - **Evolution narrative** across all commands
   - Consistent "## Evolution" section in each command
-  - Local improvement workflow (say "improve this" → FEEDBACK.md → CHANGELOG.md)
+  - Local improvement workflow
   - Remote contribution links (GitHub issues + PRs)
   - Command history tracking
-- **FEEDBACK.md** (`_internal/`) - Central feedback capture and evolution principles
 - **Template evolution guidance** in `/template` command
   - How to add features to existing templates
   - Template maturity indicators

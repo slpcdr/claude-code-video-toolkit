@@ -136,7 +136,7 @@ Before gathering configuration, check if we're in a project context:
 This command evolves through use. If something's awkward or missing:
 
 **Local improvements:**
-1. Say "improve this" → Claude captures in `_internal/FEEDBACK.md`
+1. Say "improve this" → Claude captures in `_internal/BACKLOG.md`
 2. Edit `.claude/commands/record-demo.md` → Update `_internal/CHANGELOG.md`
 3. Share upstream → `gh pr create`
 
