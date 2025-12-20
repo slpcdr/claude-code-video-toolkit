@@ -6,6 +6,22 @@ All notable changes to claude-code-video-toolkit.
 
 ---
 
+## 2025-12-20
+
+### Added
+- **`/versions` command** - Check dependency versions and toolkit updates
+  - Detects Remotion package version mismatches in projects
+  - Compares local toolkit version against GitHub releases
+  - Offers to fix version mismatches by pinning and reinstalling
+  - Documents common issues and prevention strategies
+
+### Fixed
+- **Remotion version mismatch** in digital-samba-free-intro project
+  - Pinned all Remotion packages to 4.0.387 (was mixing 4.0.383 and 4.0.387)
+  - Removed `^` prefix to prevent future drift
+
+---
+
 ## 2025-12-10
 
 ### Added

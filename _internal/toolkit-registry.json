@@ -105,6 +105,13 @@
       "status": "stable",
       "created": "2025-12-10",
       "updated": "2025-12-13"
+    },
+    "versions": {
+      "path": ".claude/commands/versions.md",
+      "description": "Check dependency versions and toolkit updates",
+      "status": "stable",
+      "created": "2025-12-20",
+      "updated": "2025-12-20"
     }
   },
 

@@ -86,6 +86,7 @@ Claude Code has deep knowledge in these domains via `.claude/skills/`:
 | `/contribute` | Share improvements - issues, PRs, skills, templates |
 | `/record-demo` | Guided Playwright browser recording |
 | `/generate-voiceover` | Generate AI voiceover from script |
+| `/versions` | Check dependency versions and toolkit updates |
 
 > **Note:** After creating or modifying commands/skills, restart Claude Code to load changes.
 
