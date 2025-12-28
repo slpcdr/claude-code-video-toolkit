@@ -1,6 +1,6 @@
 {
   "name": "claude-code-video-toolkit",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "AI-native video production workspace for Claude Code",
   "repository": "https://github.com/digitalsamba/claude-code-video-toolkit",
 
@@ -151,6 +151,14 @@
       "path": "tools/redub.py",
       "description": "Redub video with different voice (extract audio, transcribe, TTS, replace)",
       "usage": "python tools/redub.py --input video.mp4 --voice-id VOICE_ID --output dubbed.mp4",
+      "status": "beta",
+      "created": "2025-12-28",
+      "updated": "2025-12-28"
+    },
+    "addmusic": {
+      "path": "tools/addmusic.py",
+      "description": "Add background music to video (generate via ElevenLabs or use existing file)",
+      "usage": "python tools/addmusic.py --input video.mp4 --prompt 'Subtle corporate' --output output.mp4",
       "status": "beta",
       "created": "2025-12-28",
       "updated": "2025-12-28"

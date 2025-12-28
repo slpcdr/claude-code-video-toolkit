@@ -165,6 +165,10 @@ python tools/sfx.py --prompt "Thunder crack" --output thunder.mp3
 
 # Redub video with different voice (utility - no project needed)
 python tools/redub.py --input video.mp4 --voice-id VOICE_ID --output dubbed.mp4
+
+# Add background music to video (utility - no project needed)
+python tools/addmusic.py --input video.mp4 --prompt "Subtle corporate" --output output.mp4
+python tools/addmusic.py --input video.mp4 --music bg.mp3 --music-volume 0.2 --fade-in 2 --fade-out 3 --output output.mp4
 ```
 
 **SFX Presets:** whoosh, click, chime, error, pop, slide
@@ -174,7 +178,7 @@ python tools/redub.py --input video.mp4 --voice-id VOICE_ID --output dubbed.mp4
 | Type | Tools | When to Use |
 |------|-------|-------------|
 | **Project tools** | voiceover, music, sfx | During video creation workflow |
-| **Utility tools** | redub | Quick transformations on existing videos |
+| **Utility tools** | redub, addmusic | Quick transformations on existing videos |
 
 Utility tools work on any video file without requiring a project structure.
 
