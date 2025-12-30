@@ -60,11 +60,11 @@ python tools/dewatermark.py \
 
 | Property | Value |
 |----------|-------|
-| Base | `nvidia/cuda:12.1.0-cudnn8-runtime-ubuntu22.04` |
+| Base | `nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04` |
 | Size | ~4GB |
 | Cold Start | ~30 seconds |
 | Python | 3.10 |
-| PyTorch | 2.1.0 + CUDA 12.1 |
+| PyTorch | 2.4.0 + CUDA 12.4 |
 
 ### Pre-baked Components
 
@@ -86,12 +86,21 @@ python tools/dewatermark.py \
     "input": {
         "operation": "dewatermark",
         "video_url": "https://example.com/video.mp4",
-        "region": "1080,660,195,40"
+        "region": "1080,660,195,40",
+        "resize_ratio": 0.75
     }
 }
 ```
 
-Or with a pre-made mask:
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `operation` | Yes | Must be `"dewatermark"` |
+| `video_url` | Yes | Direct URL to video file |
+| `region` | One of | Watermark region as `"x,y,width,height"` |
+| `mask_url` | One of | URL to mask image (white = remove) |
+| `resize_ratio` | No | Scale factor for processing (default: `"auto"` or `0.5`). Use `1.0` for full resolution on short videos (<30s), `0.75` for <1min, `0.5` for longer |
+
+Example with mask:
 
 ```json
 {
