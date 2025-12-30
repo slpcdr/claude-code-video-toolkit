@@ -158,11 +158,28 @@ python tools/music.py --prompt "Upbeat corporate" --duration 120 --output music.
 # Generate sound effects
 python tools/sfx.py --preset whoosh --output sfx.mp3
 
-# Redub video with different voice (utility tool - no project needed)
+# Redub video with different voice
 python tools/redub.py --input video.mp4 --voice-id VOICE_ID --output dubbed.mp4
+
+# Add background music to existing video
+python tools/addmusic.py --input video.mp4 --prompt "Subtle ambient" --output output.mp4
+
+# Remove watermarks (requires RunPod or NVIDIA GPU)
+python tools/dewatermark.py --input video.mp4 --preset sora --output clean.mp4 --runpod
+
+# Locate watermark coordinates
+python tools/locate_watermark.py --input video.mp4 --grid --output-dir ./review/
 ```
 
-**Utility vs Project Tools:** Most tools are used during video creation. Utility tools like `redub` work on any video without a project structure.
+**Tool Categories:**
+
+| Type | Tools | Purpose |
+|------|-------|---------|
+| **Project** | voiceover, music, sfx | Used during video creation workflow |
+| **Utility** | redub, addmusic, notebooklm_brand | Quick transformations, no project needed |
+| **Optional** | dewatermark, locate_watermark | Requires cloud GPU or NVIDIA hardware |
+
+See [docs/optional-components.md](docs/optional-components.md) for GPU tool setup.
 
 ## Project Structure
 
@@ -192,6 +209,8 @@ claude-code-video-toolkit/
 - [Getting Started](docs/getting-started.md)
 - [Creating Templates](docs/creating-templates.md)
 - [Creating Brands](docs/creating-brands.md)
+- [Optional Components](docs/optional-components.md) — GPU tools setup (dewatermark)
+- [RunPod Setup](docs/runpod-setup.md) — Cloud GPU configuration
 
 ## How It Works
 

@@ -6,6 +6,44 @@ All notable changes to claude-code-video-toolkit.
 
 ---
 
+## 2025-12-30 (v0.7.0)
+
+### Added
+- **`tools/dewatermark.py`** - AI-powered watermark removal using ProPainter
+  - Cloud GPU processing via RunPod serverless (~$0.05-0.30/video)
+  - Local processing for NVIDIA GPU users (8GB+ VRAM)
+  - Auto resize-ratio: 1.0 for <30s, 0.75 for <1min, 0.5 for longer
+  - Chunked processing for long videos with overlap stitching
+  - Cloudflare R2 for reliable file transfer
+  - Automated `--setup` for one-command RunPod configuration
+  - Presets: notebooklm, tiktok, sora, stock-br, stock-bl, stock-center
+
+- **`tools/locate_watermark.py`** - Helper tool for finding watermark coordinates
+  - Coordinate grid overlay for visual identification
+  - Region verification across multiple frames
+  - Preset support for common watermarks
+  - Requires ImageMagick (`brew install imagemagick`)
+
+- **`tools/notebooklm_brand.py`** - Post-processing for NotebookLM videos
+  - Trims NotebookLM visual outro while preserving full audio
+  - Adds custom branded outro with logo and URL
+  - Handles freeze-frame bridging when audio exceeds video
+
+- **Docker infrastructure** for RunPod serverless (`docker/runpod-propainter/`)
+  - Dockerfile, handler.py, README
+  - Public image available for quick deployment
+
+- **Documentation**
+  - `docs/optional-components.md` - ML component installation guide
+  - `docs/runpod-setup.md` - Cloud GPU setup guide
+
+### Changed
+- ElevenLabs TTS: Added `eleven_v3` (alpha) model option
+- Updated `CLAUDE.md` with dewatermark and locate_watermark documentation
+- Updated `.env.example` with RunPod and R2 configuration
+
+---
+
 ## 2025-12-28 (v0.6.0)
 
 ### Added
