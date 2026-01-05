@@ -156,6 +156,13 @@ Render pipeline for:
 - Square format (social)
 - Vertical format (mobile/stories)
 
+### Python Compatibility
+The documentation uses `python` but macOS and some systems require `python3`:
+- Detect which command is available at runtime
+- Add wrapper script or shell function
+- Update CLAUDE.md examples to be cross-platform
+- Consider: `#!/usr/bin/env python3` shebangs for direct script execution
+
 ### Cost Tracking
 ElevenLabs usage monitoring:
 - Log character counts per generation
@@ -187,24 +194,6 @@ Cloudflare R2 usage for dewatermark tool:
 ### Template Improvements
 - Additional color themes
 - Progress bar component
-
-### Transitions Library (In Progress - experiment/transitions branch)
-**Status:** Built but needs testing before merge
-
-New `lib/transitions/` with 6 custom transitions + official Remotion transitions:
-- `glitch()` - Digital distortion, slice displacement, RGB separation
-- `rgbSplit()` - Chromatic aberration
-- `zoomBlur()` - Radial motion blur with scale
-- `lightLeak()` - Cinematic lens flare
-- `clockWipe()` - Radial sweep
-- `pixelate()` - Digital mosaic
-
-**TODO before merge:**
-- [ ] Test all transitions in gallery (`showcase/transitions/`)
-- [ ] Fix any broken transitions (glitch was fixed but needs verification)
-- [ ] Copy fixed presentations back to `lib/transitions/presentations/`
-- [ ] Test integration with templates
-- [ ] Update lib/transitions/TransitionGallery.tsx to match showcase version
 
 ### Brand System Enhancements
 - Brand inheritance (extend another brand)
