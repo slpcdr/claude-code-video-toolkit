@@ -19,8 +19,9 @@ An open-source, AI-native video production workspace for Claude Code, featuring:
 
 ## Current Status
 
-**Phase:** 3 - Templates & Brands
-**Focus:** Transitions library, shared components
+**Phase:** 3 - Templates & Brands (nearly complete)
+**Focus:** Additional templates (tutorial, changelog), testing
+**Recent:** Added Cloud GPU tools (image_edit, upscale, dewatermark), qwen-edit skill
 
 ---
 
@@ -174,8 +175,8 @@ An open-source, AI-native video production workspace for Claude Code, featuring:
 |----------|-------|-------|
 | Templates | 2 | sprint-review, product-demo |
 | Brands | 2 | default, digital-samba |
-| Skills | 5 | 3 stable, 2 beta |
-| Tools | 5 | voiceover, music, sfx, redub, addmusic |
+| Skills | 6 | 4 stable, 2 beta |
+| Tools | 10 | voiceover, music, sfx, redub, addmusic, dewatermark, locate_watermark, notebooklm_brand, image_edit, upscale |
 | Commands | 11 | video, brand, template, skills, contribute, record-demo, generate-voiceover, scene-review, design, versions, redub |
 | Components | 9 | AnimatedBackground, SlideTransition, Label, Vignette, LogoWatermark, SplitScreen, NarratorPiP, Envelope, PointingHand |
 | Transitions | 7 | glitch, rgbSplit, zoomBlur, lightLeak, clockWipe, pixelate, checkerboard |
