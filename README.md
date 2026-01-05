@@ -1,5 +1,7 @@
 # claude-code-video-toolkit
 
+[![GitHub release](https://img.shields.io/github/v/release/digitalsamba/claude-code-video-toolkit)](https://github.com/digitalsamba/claude-code-video-toolkit/releases)
+
 An AI-native video production workspace for [Claude Code](https://claude.ai/code). Create professional videos with AI assistance — from concept to final render.
 
 ## What is this?
@@ -166,6 +168,9 @@ python tools/redub.py --input video.mp4 --voice-id VOICE_ID --output dubbed.mp4
 # Add background music to existing video
 python tools/addmusic.py --input video.mp4 --prompt "Subtle ambient" --output output.mp4
 
+# Rebrand NotebookLM videos (trim outro, add your logo/URL)
+python tools/notebooklm_brand.py --input video.mp4 --logo logo.png --url "mysite.com" --output branded.mp4
+
 # AI image editing (style transfer, backgrounds, custom prompts)
 python tools/image_edit.py --input photo.jpg --style cyberpunk
 python tools/image_edit.py --input photo.jpg --prompt "Add sunglasses"
@@ -221,16 +226,6 @@ claude-code-video-toolkit/
 - [Optional Components](docs/optional-components.md) — GPU tools setup (dewatermark)
 - [RunPod Setup](docs/runpod-setup.md) — Cloud GPU configuration
 
-## How It Works
-
-1. **You describe** what video you want
-2. **Claude Code uses skills** to understand the domain (Remotion, audio, etc.)
-3. **Commands guide** complex workflows step-by-step
-4. **Templates provide** ready-made video structures
-5. **Tools automate** repetitive tasks (voiceover, music, SFX)
-6. **You iterate** with live preview until it's perfect
-7. **Render** to MP4
-
 ## Video Workflow
 
 ```
@@ -247,14 +242,6 @@ claude-code-video-toolkit/
 8. **Preview** — `npm run studio` for live preview
 9. **Iterate** — Work with Claude Code to adjust timing, styling, content
 10. **Render** — `npm run render` for final MP4
-
-## Requirements
-
-- **Claude Code** — The AI coding assistant
-- **Node.js 18+** — For Remotion
-- **Python 3.9+** — For audio tools
-- **FFmpeg** — For media processing
-- **ElevenLabs API key** — For AI voiceovers (optional but recommended)
 
 ## Contributing
 
