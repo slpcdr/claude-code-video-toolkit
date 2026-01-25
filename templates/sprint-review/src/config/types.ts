@@ -64,6 +64,15 @@ export interface NarratorConfig {
   startFrame?: number;          // When to show narrator (default: same as voiceover)
 }
 
+export interface MazeDecorationConfig {
+  enabled: boolean;
+  corner?: 'top-right' | 'top-left';
+  opacity?: number;             // Default: 0.18
+  scale?: number;               // Default: 1
+  primaryColor?: string;        // Default: theme primary color
+  secondaryColor?: string;      // Default: theme background dark
+}
+
 export interface SprintConfig {
   info: SprintInfo;
   overview: {
@@ -85,6 +94,7 @@ export interface SprintConfig {
     chimeFrame?: number;
   };
   narrator?: NarratorConfig;
+  mazeDecoration?: MazeDecorationConfig;
 }
 
 // Video configuration

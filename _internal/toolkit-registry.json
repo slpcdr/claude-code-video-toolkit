@@ -445,6 +445,12 @@
       "description": "Animated hand emoji with directional slide-in and pulse",
       "created": "2025-12-10",
       "updated": "2025-12-10"
+    },
+    "MazeDecoration": {
+      "path": "lib/components/MazeDecoration.tsx",
+      "description": "Animated isometric grid decoration for video corners with wave animation",
+      "created": "2026-01-25",
+      "updated": "2026-01-25"
     }
   },
 

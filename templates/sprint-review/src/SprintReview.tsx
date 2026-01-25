@@ -4,6 +4,7 @@ import { sprintConfig, seconds } from './config/sprint-config';
 
 // Core components
 import { AnimatedBackground, SlideTransition, NarratorPiP } from './components/core';
+import { MazeDecoration } from '../../../lib/components';
 
 // Slides
 import { TitleSlide, OverviewSlide, SummarySlide, EndCredits } from './components/slides';
@@ -12,7 +13,7 @@ import { TitleSlide, OverviewSlide, SummarySlide, EndCredits } from './component
 import { DemoSection, SplitScreen } from './components/demos';
 
 export const SprintReview: React.FC = () => {
-  const { demos, audio, narrator } = sprintConfig;
+  const { demos, audio, narrator, mazeDecoration } = sprintConfig;
   const staticFiles = getStaticFiles();
 
   // Check which audio files exist
@@ -25,6 +26,17 @@ export const SprintReview: React.FC = () => {
       <AbsoluteFill>
         {/* Persistent animated background */}
         <AnimatedBackground variant="subtle" />
+
+        {/* Optional maze decoration in corner */}
+        {mazeDecoration?.enabled && (
+          <MazeDecoration
+            corner={mazeDecoration.corner}
+            opacity={mazeDecoration.opacity}
+            scale={mazeDecoration.scale}
+            primaryColor={mazeDecoration.primaryColor || defaultTheme.colors.primary}
+            secondaryColor={mazeDecoration.secondaryColor || defaultTheme.colors.backgroundDark}
+          />
+        )}
 
         <Series>
           {/* Title Card - 5 seconds */}

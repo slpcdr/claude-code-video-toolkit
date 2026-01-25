@@ -9,6 +9,10 @@
 export { AnimatedBackground } from './AnimatedBackground';
 export type { AnimatedBackgroundProps, BackgroundVariant } from './AnimatedBackground';
 
+// Decorations
+export { MazeDecoration } from './MazeDecoration';
+export type { MazeDecorationProps } from './MazeDecoration';
+
 // Overlays
 export { Vignette } from './Vignette';
 export type { VignetteProps } from './Vignette';

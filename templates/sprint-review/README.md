@@ -149,6 +149,24 @@ narrator: {
 - Match the duration to your voiceover audio
 - The component crops the bottom slightly to hide hands
 
+## Maze Decoration (Optional)
+
+Add an animated grid decoration to a corner of your video:
+
+```typescript
+// In sprint-config.ts
+mazeDecoration: {
+  enabled: true,
+  corner: 'top-right',          // 'top-right' or 'top-left'
+  opacity: 0.18,                // 0-1, default 0.18
+  // Colors default to theme.colors.primary and theme.colors.backgroundDark
+  // primaryColor: '#ea580c',   // Override primary block color
+  // secondaryColor: '#475569', // Override secondary block color
+},
+```
+
+The decoration creates an isometric grid of animated blocks that pulse in a wave pattern. Works well for adding subtle visual interest without distracting from content.
+
 ## Tips
 
 - **Playback rate**: Use `playbackRate: 1.5` or `2.0` to speed up long demos
