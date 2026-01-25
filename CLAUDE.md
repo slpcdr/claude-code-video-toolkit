@@ -145,6 +145,7 @@ import { AnimatedBackground, SlideTransition, Label } from '../../../../lib/comp
 | `NarratorPiP` | Picture-in-picture presenter overlay |
 | `Envelope` | 3D envelope with opening flap animation |
 | `PointingHand` | Animated hand emoji with slide-in and pulse |
+| `MazeDecoration` | Animated isometric grid decoration for corners |
 
 ## Python Tools
 
@@ -232,7 +233,7 @@ See `docs/qwen-edit-patterns.md` and `.claude/skills/qwen-edit/` for prompting g
 |------|-------|-------------|
 | **Project tools** | voiceover, music, sfx | During video creation workflow |
 | **Utility tools** | redub, addmusic, notebooklm_brand, locate_watermark | Quick transformations on existing videos |
-| **Cloud GPU** | image_edit, upscale, dewatermark | AI processing via RunPod (see sections below) |
+| **Cloud GPU** | image_edit, upscale, dewatermark, sadtalker | AI processing via RunPod (see sections below) |
 
 Utility tools work on any video file without requiring a project structure.
 
@@ -365,6 +366,45 @@ python tools/locate_watermark.py --list-presets
 - `--verify` - Mark region across multiple frames for verification
 - `--crop` - Also output cropped watermark regions
 - `--open` - Open output directory in Finder (macOS)
+
+### Talking Head Generation (SadTalker)
+
+Generate animated talking head videos from a portrait image + audio file. Use with NarratorPiP component for picture-in-picture presenter overlays.
+
+```bash
+# Basic usage
+python tools/sadtalker.py --image portrait.png --audio voiceover.mp3 --output talking.mp4
+
+# For NarratorPiP integration (recommended settings)
+# CRITICAL: --preprocess full preserves image dimensions (otherwise outputs square crop)
+python tools/sadtalker.py \
+  --image presenter_16x9.png \
+  --audio voiceover.mp3 \
+  --preprocess full --still --expression-scale 0.8 \
+  --output narrator.mp4
+
+# More animated style
+python tools/sadtalker.py --image portrait.png --audio speech.mp3 --preset expressive --output animated.mp4
+```
+
+**Key flags for NarratorPiP:**
+- `--preprocess full` — **Critical!** Preserves input dimensions (default `crop` outputs square)
+- `--still` — Reduces head movement for professional look
+- `--expression-scale 0.8` — Calmer expression (default 1.0)
+
+**Presets:** default, natural, expressive, professional, fullbody
+
+**Image requirements:**
+- Face should be 30-70% of frame, front-facing
+- For NarratorPiP: use 16:9 aspect ratio image
+- High resolution (512px+ recommended)
+
+**RunPod setup:**
+```bash
+python tools/sadtalker.py --setup
+```
+
+See `docs/sadtalker.md` for detailed options, NarratorPiP workflow, and troubleshooting.
 
 ### Redub Sync Mode
 
