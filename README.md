@@ -113,6 +113,7 @@ See `examples/` for finished projects you can learn from (oldest first, showing 
 | 2025-12-05 | [sprint-review-cho-oyu](https://demos.digitalsamba.com/video/sprint-review.mp4) | iOS sprint review with demos |
 | 2025-12-10 | [digital-samba-skill-demo](https://demos.digitalsamba.com/video/digital-samba-skill-demo.mp4) | Product demo showcasing Claude Code skill |
 | 2026-01-22 | [ds-remote-mcp](https://demos.digitalsamba.com/video/ds-remote-mcp.mp4) | Remote MCP server demo *(the jazz background music is a joke)* |
+| 2026-01-25 | [schlumbergera](https://demos.digitalsamba.com/video/schlumbergera.mp4) | Latest demo video |
 
 ### Scene Transitions
 
@@ -152,6 +153,24 @@ Included brands: `default`, `digital-samba`
 
 Create your own with `/brand`.
 
+### Project Management System
+
+Video projects are tracked through a multi-session lifecycle:
+
+```
+planning → assets → review → audio → editing → rendering → complete
+```
+
+Each project has a `project.json` that tracks:
+- **Scenes** — What to show, asset status, visual types
+- **Audio** — Voiceover and music status
+- **Sessions** — Work history across Claude Code sessions
+- **Phase** — Current stage in the workflow
+
+The system automatically reconciles intent (what you planned) with reality (what files exist), and generates a `CLAUDE.md` per project for instant context when resuming.
+
+See [lib/project/README.md](lib/project/README.md) for schema details, scene status tracking, and filesystem reconciliation logic.
+
 ### Python Tools
 
 Audio, video, and image tools in `tools/`:
@@ -187,6 +206,11 @@ python tools/dewatermark.py --input video.mp4 --preset sora --output clean.mp4 -
 
 # Locate watermark coordinates
 python tools/locate_watermark.py --input video.mp4 --grid --output-dir ./review/
+
+# Generate talking head video from image + audio (SadTalker)
+# Creates animated presenter/narrator from a static portrait + voiceover audio
+# Use with NarratorPiP component for picture-in-picture presenter overlays
+python tools/sadtalker.py --image portrait.png --audio voiceover.mp3 --output talking.mp4
 ```
 
 **Tool Categories:**
@@ -195,9 +219,22 @@ python tools/locate_watermark.py --input video.mp4 --grid --output-dir ./review/
 |------|-------|---------|
 | **Project** | voiceover, music, sfx | Used during video creation workflow |
 | **Utility** | redub, addmusic, notebooklm_brand, locate_watermark | Quick transformations, no project needed |
-| **Cloud GPU** | image_edit, upscale, dewatermark | AI processing via RunPod (see below) |
+| **Cloud GPU** | image_edit, upscale, dewatermark, sadtalker | AI processing via RunPod (see below) |
 
 See [docs/runpod-setup.md](docs/runpod-setup.md) for Cloud GPU tool setup.
+
+### Pre-built Docker Images
+
+Cloud GPU tools use pre-built Docker images deployed to RunPod serverless:
+
+| Tool | Docker Image | GPU |
+|------|--------------|-----|
+| image_edit | `ghcr.io/conalmullan/video-toolkit-qwen-edit:latest` | 48GB+ (A6000, L40S) |
+| upscale | `ghcr.io/conalmullan/video-toolkit-realesrgan:latest` | 24GB (RTX 3090/4090) |
+| dewatermark | `ghcr.io/conalmullan/video-toolkit-propainter:latest` | 24GB (RTX 3090/4090) |
+| sadtalker | `ghcr.io/conalmullan/video-toolkit-sadtalker:latest` | 24GB (RTX 4090) |
+
+Dockerfiles and handlers are in `docker/`. Run `python tools/<tool>.py --setup` to auto-deploy.
 
 ## Project Structure
 
@@ -227,8 +264,10 @@ claude-code-video-toolkit/
 - [Getting Started](docs/getting-started.md)
 - [Creating Templates](docs/creating-templates.md)
 - [Creating Brands](docs/creating-brands.md)
+- [Project System](lib/project/README.md) — Multi-session lifecycle, schema, reconciliation
 - [Optional Components](docs/optional-components.md) — GPU tools setup (dewatermark)
 - [RunPod Setup](docs/runpod-setup.md) — Cloud GPU configuration
+- [Toolkit Development](_internal/ROADMAP.md) — Roadmap, backlog, changelog for the toolkit itself
 
 ## Video Workflow
 
