@@ -71,6 +71,13 @@ def get_runpod_endpoint_id() -> str | None:
     return os.getenv("RUNPOD_ENDPOINT_ID")
 
 
+def get_qwen3_tts_endpoint_id() -> str | None:
+    """Get Qwen3-TTS RunPod endpoint ID from environment."""
+    from dotenv import load_dotenv
+    load_dotenv()
+    return os.getenv("RUNPOD_QWEN3_TTS_ENDPOINT_ID")
+
+
 def get_r2_config() -> dict | None:
     """Get Cloudflare R2 configuration from environment.
 
