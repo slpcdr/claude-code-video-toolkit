@@ -8,8 +8,14 @@ Usage:
     # Built-in speaker
     python tools/qwen3_tts.py --text "Hello world" --speaker Ryan --output hello.mp3
 
-    # With emotion/style instruction
+    # With tone preset
+    python tools/qwen3_tts.py --text "Hello world" --tone warm --output hello.mp3
+
+    # With custom emotion/style instruction (overrides --tone)
     python tools/qwen3_tts.py --text "I'm so excited!" --instruct "Speak enthusiastically" --output excited.mp3
+
+    # List tone presets
+    python tools/qwen3_tts.py --list-tones
 
     # Voice cloning
     python tools/qwen3_tts.py --text "Hello" --ref-audio sample.wav --ref-text "transcript" --output cloned.mp3
@@ -63,6 +69,33 @@ SUPPORTED_LANGUAGES = [
     "Auto", "English", "Chinese", "French", "German",
     "Italian", "Japanese", "Korean", "Portuguese", "Russian", "Spanish",
 ]
+
+# Named instruct presets for common voice tones
+INSTRUCT_PRESETS = {
+    "neutral": "",
+    "warm": "Speak warmly and naturally, like talking to a friend.",
+    "professional": "Speak in a clear, professional tone with measured pacing.",
+    "excited": "Speak with enthusiasm and energy, conveying excitement.",
+    "calm": "Speak slowly and calmly, with a soothing, relaxed delivery.",
+    "serious": "Speak in a serious, authoritative tone with gravitas.",
+    "storyteller": "Speak like a narrator telling a captivating story, with varied pacing and emphasis.",
+    "tutorial": "Speak clearly and patiently, like explaining something step by step.",
+}
+
+
+def resolve_tone(tone: str | None, instruct: str) -> str:
+    """Resolve a tone preset name and/or raw instruct text into final instruct string.
+
+    Priority: explicit instruct > tone preset > empty string.
+    Unknown tone names are treated as raw instruct text.
+    """
+    if instruct:
+        return instruct
+    if tone:
+        if tone in INSTRUCT_PRESETS:
+            return INSTRUCT_PRESETS[tone]
+        return tone  # treat unknown tone as raw instruct text
+    return ""
 
 
 def get_runpod_config() -> dict:
@@ -248,7 +281,7 @@ def get_audio_duration(file_path: str) -> float | None:
         if result.returncode == 0:
             return float(result.stdout.strip())
     except (FileNotFoundError, ValueError):
-        pass
+        pass  # ffprobe not installed or invalid output
     return None
 
 
@@ -532,7 +565,6 @@ def generate_audio(
     for key in r2_keys_to_cleanup:
         _delete_from_r2(key)
 
-    elapsed = time.time() - start_time
     duration = get_audio_duration(output_path)
 
     result_dict = {
@@ -907,7 +939,12 @@ Examples:
         "--instruct",
         type=str,
         default="",
-        help="Natural-language emotion/style instruction (e.g., 'Speak warmly')",
+        help="Natural-language emotion/style instruction (e.g., 'Speak warmly'). Overrides --tone.",
+    )
+    parser.add_argument(
+        "--tone",
+        type=str,
+        help="Named tone preset (e.g., 'warm', 'professional'). Use --list-tones to see options.",
     )
 
     # Voice cloning
@@ -958,6 +995,11 @@ Examples:
         help="List built-in speakers and exit",
     )
     parser.add_argument(
+        "--list-tones",
+        action="store_true",
+        help="List available tone presets and exit",
+    )
+    parser.add_argument(
         "--json",
         action="store_true",
         help="Output result as JSON",
@@ -985,6 +1027,21 @@ def main():
         print('  --instruct "Speak warmly and calmly"')
         print('  --instruct "Whisper mysteriously"')
         print('  --instruct "Sound excited and energetic"')
+        sys.exit(0)
+
+    # Handle --list-tones
+    if args.list_tones:
+        print("Tone presets:")
+        print()
+        print(f"  {'Tone':<15} {'Instruct text'}")
+        print(f"  {'-'*15} {'-'*50}")
+        for name, text in INSTRUCT_PRESETS.items():
+            display = text if text else "(no instruction)"
+            print(f"  {name:<15} {display}")
+        print()
+        print("Usage: --tone warm")
+        print("Override with: --instruct \"your custom instruction\"")
+        print("Unknown --tone values are treated as raw instruct text.")
         sys.exit(0)
 
     # Handle --setup
@@ -1015,15 +1072,30 @@ def main():
     # Capitalize language for API
     language = args.language.capitalize()
 
+    # Resolve tone preset → instruct text
+    instruct = resolve_tone(args.tone, args.instruct)
+
+    # Warn if tone/instruct used with clone (clone mode ignores instruct)
+    if args.ref_audio and instruct:
+        print(
+            "Note: --tone/--instruct is ignored when using a cloned voice.\n"
+            "  The clone's tone comes from your reference recording.\n"
+            "  Tip: Record a new reference with the tone you want.",
+            file=sys.stderr,
+        )
+        instruct = ""
+
     if verbose:
         print("Generating speech with Qwen3-TTS...")
+        if instruct:
+            print(f"  Tone: {instruct}")
 
     result = generate_audio(
         text=args.text,
         output_path=args.output,
         speaker=args.speaker,
         language=language,
-        instruct=args.instruct,
+        instruct=instruct,
         ref_audio=args.ref_audio,
         ref_text=args.ref_text,
         output_format=args.format,

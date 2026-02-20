@@ -94,6 +94,20 @@ Before gathering configuration, check if we're in a project context:
    - ElevenLabs (default) — high quality, paid API
    - Qwen3-TTS — self-hosted via RunPod, free/cheap, voice cloning
 
+   If Qwen3-TTS is selected, check the project brand (from `project.json`) for a clone profile:
+   1. Load `brands/{brand}/voice.json`
+   2. If `qwen3.clone` exists and `refAudio` file is present:
+      ```
+      Clone profile detected for brand '{brand}':
+        Reference: assets/voice-reference.m4a
+        Transcript: "Welcome to this video walkthrough..."
+
+        1. Use cloned voice (recommended)
+        2. Use built-in speaker instead
+        3. Set up a new clone → /voice-clone
+      ```
+   3. If no clone profile, offer built-in speakers as usual
+
    **Question 2 - Generation Mode (if scene scripts found):**
    Options:
    - Per-scene generation (recommended) — each .txt becomes a .mp3
@@ -111,10 +125,30 @@ Before gathering configuration, check if we're in a project context:
    - Use defaults (stability: 0.85, similarity: 0.95)
    - Customize settings
 
-   *If Qwen3-TTS selected, gather:*
+   *If Qwen3-TTS selected with cloned voice:*
+   Skip tone selection entirely. Show:
+   ```
+   Using cloned voice from brand '{brand}' — tone is determined by your reference recording.
+
+   Tip: Want a different feel? Run /voice-clone to record a new reference
+   with the tone you're after (e.g., warmer, more energetic). You can have
+   multiple clone profiles across brands.
+   ```
+
+   *If Qwen3-TTS selected with built-in speaker (no clone):*
    - Speaker name (default: Ryan). Options: Ryan, Aiden (EN), Vivian, Serena (ZH), Ono_Anna (JA), Sohee (KO)
-   - Emotion/style instruction (optional, e.g., "Speak warmly and calmly")
-   - Voice cloning reference audio (optional)
+   - Voice tone (choose one):
+     1. Neutral (no instruction)
+     2. Warm — friendly, conversational
+     3. Professional — clear, measured
+     4. Excited — enthusiastic, energetic
+     5. Calm — soothing, relaxed
+     6. Serious — authoritative, gravitas
+     7. Storyteller — captivating narrator
+     8. Tutorial — patient, step-by-step
+     9. Custom instruction (type your own)
+
+   Note: Per-scene tone overrides are supported with built-in speakers. Add `[tone: excited]` or `[instruct: Whisper gently]` as the first line of any scene `.txt` file. These are ignored when using a cloned voice.
 
 3. **Execute Voiceover Generation**
 
@@ -154,7 +188,28 @@ Before gathering configuration, check if we're in a project context:
      --json
    ```
 
-   **Qwen3-TTS — With emotion instruction:**
+   **Qwen3-TTS — With brand clone profile:**
+   ```bash
+   cd PROJECT_DIR
+   python /Users/conalmullan/work/video/tools/voiceover.py \
+     --provider qwen3 \
+     --brand BRAND_NAME \
+     --scene-dir public/audio/scenes \
+     --json
+   ```
+
+   **Qwen3-TTS — With tone preset:**
+   ```bash
+   cd PROJECT_DIR
+   python /Users/conalmullan/work/video/tools/voiceover.py \
+     --provider qwen3 \
+     --speaker Ryan \
+     --tone warm \
+     --scene-dir public/audio/scenes \
+     --json
+   ```
+
+   **Qwen3-TTS — With custom instruction (overrides --tone):**
    ```bash
    cd PROJECT_DIR
    python /Users/conalmullan/work/video/tools/voiceover.py \

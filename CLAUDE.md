@@ -90,6 +90,7 @@ Claude Code has deep knowledge in these domains via `.claude/skills/`:
 | `/contribute` | Share improvements - issues, PRs, skills, templates |
 | `/record-demo` | Guided Playwright browser recording |
 | `/generate-voiceover` | Generate AI voiceover from script |
+| `/voice-clone` | Record, test, and save a cloned voice to a brand |
 | `/redub` | Redub existing video with different voice |
 | `/versions` | Check dependency versions and toolkit updates |
 
@@ -169,13 +170,17 @@ python tools/voiceover.py --scene-dir public/audio/scenes --concat public/audio/
 
 # Using Qwen3-TTS (self-hosted, free alternative to ElevenLabs)
 python tools/voiceover.py --provider qwen3 --speaker Ryan --scene-dir public/audio/scenes --json
+python tools/voiceover.py --provider qwen3 --tone warm --scene-dir public/audio/scenes --json
+python tools/voiceover.py --provider qwen3 --brand my-brand --scene-dir public/audio/scenes --json
 python tools/voiceover.py --provider qwen3 --instruct "Speak warmly" --script script.txt --output out.mp3
 
 # Qwen3-TTS standalone tool
 python tools/qwen3_tts.py --text "Hello world" --speaker Ryan --output hello.mp3
+python tools/qwen3_tts.py --text "Hello world" --tone warm --output hello.mp3
 python tools/qwen3_tts.py --text "Hello" --instruct "Speak enthusiastically" --output excited.mp3
 python tools/qwen3_tts.py --text "Hello" --ref-audio sample.wav --ref-text "transcript" --output cloned.mp3
 python tools/qwen3_tts.py --list-voices
+python tools/qwen3_tts.py --list-tones
 python tools/qwen3_tts.py --setup
 
 # Background music
@@ -433,16 +438,21 @@ Self-hosted TTS via RunPod as an alternative to ElevenLabs. Supports 9 built-in 
 ```bash
 # Standalone tool
 python tools/qwen3_tts.py --text "Hello world" --speaker Ryan --output hello.mp3
+python tools/qwen3_tts.py --text "Hello world" --tone warm --output hello.mp3
 python tools/qwen3_tts.py --text "Great news!" --instruct "Speak enthusiastically" --output excited.mp3
 python tools/qwen3_tts.py --text "Hello" --ref-audio sample.wav --ref-text "transcript" --output cloned.mp3
 python tools/qwen3_tts.py --list-voices
+python tools/qwen3_tts.py --list-tones
 
 # Via voiceover.py (per-scene generation)
 python tools/voiceover.py --provider qwen3 --speaker Ryan --scene-dir public/audio/scenes --json
+python tools/voiceover.py --provider qwen3 --tone warm --scene-dir public/audio/scenes --json
 python tools/voiceover.py --provider qwen3 --instruct "Speak warmly" --script script.txt --output out.mp3
 ```
 
 **Built-in speakers:** Ryan (EN), Aiden (EN), Vivian (ZH), Serena (ZH), Uncle_Fu (ZH), Dylan (ZH), Eric (ZH), Ono_Anna (JA), Sohee (KO)
+
+**Tone presets:** neutral, warm, professional, excited, calm, serious, storyteller, tutorial (see `--list-tones`)
 
 **Languages:** Auto, English, Chinese, French, German, Italian, Japanese, Korean, Portuguese, Russian, Spanish
 

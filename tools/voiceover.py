@@ -23,7 +23,7 @@ Usage:
 
     # Using Qwen3-TTS provider
     python tools/voiceover.py --provider qwen3 --speaker Ryan --scene-dir public/audio/scenes --json
-    python tools/voiceover.py --provider qwen3 --speaker Ryan --script script.txt --output out.mp3
+    python tools/voiceover.py --provider qwen3 --tone warm --scene-dir public/audio/scenes --json
     python tools/voiceover.py --provider qwen3 --instruct "Speak warmly" --script script.txt --output out.mp3
 """
 
@@ -37,7 +37,7 @@ from dotenv import load_dotenv
 
 # Add parent to path for local imports
 sys.path.insert(0, str(Path(__file__).parent))
-from config import get_elevenlabs_api_key, get_voice_id
+from config import get_brand_dir, get_elevenlabs_api_key, get_voice_id, load_brand_voice_config
 
 
 def _get_elevenlabs_imports():
@@ -59,6 +59,7 @@ Examples:
 
   # Qwen3-TTS
   python tools/voiceover.py --provider qwen3 --speaker Ryan --scene-dir public/audio/scenes --json
+  python tools/voiceover.py --provider qwen3 --tone warm --scene-dir public/audio/scenes --json
   python tools/voiceover.py --provider qwen3 --instruct "Speak warmly" --script script.txt --output out.mp3
         """,
     )
@@ -151,7 +152,12 @@ Examples:
         "--instruct",
         type=str,
         default="",
-        help="Qwen3-TTS emotion/style instruction (e.g., 'Speak warmly')",
+        help="Qwen3-TTS emotion/style instruction (e.g., 'Speak warmly'). Overrides --tone.",
+    )
+    parser.add_argument(
+        "--tone",
+        type=str,
+        help="Qwen3-TTS tone preset (e.g., 'warm', 'professional'). See 'python tools/qwen3_tts.py --list-tones'.",
     )
     parser.add_argument(
         "--ref-audio",
@@ -162,6 +168,13 @@ Examples:
         "--ref-text",
         type=str,
         help="Qwen3-TTS transcript of reference audio (required with --ref-audio)",
+    )
+
+    # Brand integration
+    parser.add_argument(
+        "--brand",
+        type=str,
+        help="Brand name to load voice config from (e.g., 'default', 'digital-samba')",
     )
 
     # Common options
@@ -325,17 +338,37 @@ def process_scene_directory(
             print(f"Warning: Empty script in {txt_file.name}, skipping", file=sys.stderr)
             continue
 
+        # Parse per-scene instruct frontmatter: [tone: X] or [instruct: X]
+        scene_instruct = instruct
+        if provider == "qwen3":
+            import re
+            first_line = script.split("\n", 1)[0].strip()
+            m = re.match(r"^\[(tone|instruct):\s*(.+?)\]\s*$", first_line, re.IGNORECASE)
+            if m:
+                kind, value = m.group(1).lower(), m.group(2).strip()
+                if kind == "tone":
+                    from qwen3_tts import resolve_tone
+                    scene_instruct = resolve_tone(value, "")
+                else:
+                    scene_instruct = value
+                # Strip the frontmatter line from the script
+                script = script.split("\n", 1)[1].strip() if "\n" in script else ""
+
         total_chars += len(script)
 
         if dry_run:
-            results.append({
+            scene_result = {
                 "dry_run": True,
                 "script": str(txt_file),
                 "output": str(mp3_file),
                 "script_chars": len(script),
-            })
+            }
+            if provider == "qwen3" and scene_instruct:
+                scene_result["instruct"] = scene_instruct
+            results.append(scene_result)
             if not json_output:
-                print(f"  {txt_file.name} → {mp3_file.name} ({len(script)} chars)")
+                tone_note = f" [instruct: {scene_instruct}]" if scene_instruct != instruct else ""
+                print(f"  {txt_file.name} → {mp3_file.name} ({len(script)} chars){tone_note}")
         else:
             if not json_output:
                 print(f"Generating {mp3_file.name}...", file=sys.stderr)
@@ -346,7 +379,7 @@ def process_scene_directory(
                     output_path=mp3_file,
                     speaker=speaker,
                     language=language,
-                    instruct=instruct,
+                    instruct=scene_instruct,
                     ref_audio=ref_audio,
                     ref_text=ref_text,
                 )
@@ -442,6 +475,54 @@ def main():
     if args.ref_audio and not args.ref_text:
         print("Error: --ref-text is required with --ref-audio", file=sys.stderr)
         sys.exit(1)
+
+    # Brand voice config resolution
+    if args.brand:
+        voice_config = load_brand_voice_config(args.brand)
+        if not voice_config:
+            print(f"Error: Brand '{args.brand}' not found or has no voice.json", file=sys.stderr)
+            sys.exit(1)
+
+        if provider == "qwen3":
+            qwen3_cfg = voice_config.get("qwen3", {})
+            # Apply clone config if no explicit --ref-audio
+            clone_cfg = qwen3_cfg.get("clone", {})
+            if clone_cfg and not args.ref_audio:
+                brand_dir = get_brand_dir(args.brand)
+                ref_audio_path = brand_dir / clone_cfg["refAudio"]
+                if ref_audio_path.exists():
+                    args.ref_audio = str(ref_audio_path)
+                    args.ref_text = clone_cfg.get("refText", "")
+                else:
+                    print(f"Warning: Clone ref audio not found: {ref_audio_path}", file=sys.stderr)
+            # Apply speaker/language/instruct defaults from brand
+            if qwen3_cfg.get("speaker") and args.speaker == "Ryan":
+                args.speaker = qwen3_cfg["speaker"]
+            if qwen3_cfg.get("language") and args.language == "Auto":
+                args.language = qwen3_cfg["language"]
+            if qwen3_cfg.get("instruct") and not args.instruct:
+                args.instruct = qwen3_cfg["instruct"]
+            if qwen3_cfg.get("tone") and not args.tone and not args.instruct:
+                args.tone = qwen3_cfg["tone"]
+        elif provider == "elevenlabs":
+            # Apply voice ID from brand if not explicitly provided
+            if not args.voice_id and voice_config.get("voiceId") and voice_config["voiceId"] != "YOUR_VOICE_ID_HERE":
+                args.voice_id = voice_config["voiceId"]
+
+    # Resolve tone preset → instruct text for Qwen3
+    if provider == "qwen3" and (args.tone or args.instruct):
+        from qwen3_tts import resolve_tone
+        args.instruct = resolve_tone(args.tone, args.instruct)
+
+    # Warn if tone/instruct used with clone (clone mode ignores instruct)
+    if provider == "qwen3" and args.ref_audio and args.instruct:
+        print(
+            "Note: --tone/--instruct is ignored when using a cloned voice.\n"
+            "  The clone's tone comes from your reference recording.\n"
+            "  Tip: Run /voice-clone to record a new reference with a different feel.",
+            file=sys.stderr,
+        )
+        args.instruct = ""
 
     # Provider-specific setup
     client = None
