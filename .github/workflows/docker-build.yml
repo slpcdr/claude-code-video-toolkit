@@ -43,10 +43,10 @@ jobs:
           else
             # Detect changed Dockerfiles
             CHANGED=$(git diff --name-only HEAD~1 HEAD -- 'docker/*/Dockerfile' 'docker/*/handler.py' | \
-              sed 's|docker/\([^/]*\)/.*|\1|' | sort -u | jq -R . | jq -s .)
+              sed 's|docker/\([^/]*\)/.*|\1|' | sort -u | jq -R . | jq -sc .)
             if [ "$CHANGED" = "[]" ]; then
               # Fallback: build all images
-              CHANGED=$(ls -d docker/*/ | sed 's|docker/\([^/]*\)/|\1|' | jq -R . | jq -s .)
+              CHANGED=$(ls -d docker/*/ | sed 's|docker/\([^/]*\)/|\1|' | jq -R . | jq -sc .)
             fi
             echo "images=$CHANGED" >> $GITHUB_OUTPUT
           fi

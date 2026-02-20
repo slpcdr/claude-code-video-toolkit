@@ -219,28 +219,25 @@ Tested in `android-screenshare-sprint` (Jan 2026). Now promoted to default workf
 - [ ] Store concat list file in project for reproducibility
 - [ ] Auto-split VOICEOVER-SCRIPT.md into scene scripts
 
-### Qwen3-TTS Generation Parameters (Requires Docker Rebuild)
+### Qwen3-TTS Generation Parameters (Partially Done)
 
-The Qwen3-TTS model accepts HF Transformers `**generation_kwargs` that we don't currently expose because `handler.py` doesn't pass them through. A Docker image rebuild is needed.
+`temperature` and `top_p` are now supported end-to-end (handler.py, qwen3_tts.py, voiceover.py). Remaining parameters need a future Docker rebuild.
 
-**Parameters to add:**
+**Done:**
+
+| Parameter | Effect | Status |
+|-----------|--------|--------|
+| `temperature` | Expressiveness/randomness (0.4 = consistent, 0.7 = natural, 1.2+ = varied) | **Done** |
+| `top_p` | Nucleus sampling cutoff (controls quality/diversity tradeoff) | **Done** |
+
+**Remaining (future Docker rebuild):**
 
 | Parameter | Effect | Priority |
 |-----------|--------|----------|
-| `temperature` | Expressiveness/randomness (0.6 = consistent, 0.8 = natural, 1.0+ = varied) | High |
-| `top_p` | Nucleus sampling cutoff (controls quality/diversity tradeoff) | High |
 | `max_new_tokens` | Max audio length — needed for long texts | Medium |
 | `x_vector_only_mode` | Fast voice cloning — speaker embedding only, skips full prompt encoding. Faster but lower quality. Good for previews. | Medium |
 | `do_sample` | Toggle sampling vs greedy | Low |
 | `repetition_penalty` | Reduce repetitive audio patterns | Low |
-
-**What's needed:**
-1. `handler.py`: Read from `job_input`, pass to `generate_custom_voice()` / `generate_clone_voice()` as kwargs (~10 lines)
-2. Rebuild Docker image: `docker build --platform linux/amd64 -t ghcr.io/conalmullan/video-toolkit-qwen3-tts:latest docker/runpod-qwen3-tts/`
-3. Push to GHCR: `docker push ghcr.io/conalmullan/video-toolkit-qwen3-tts:latest`
-4. Force RunPod to pull new image (update template imageName to `@sha256:digest`, then revert to `:latest`)
-
-**CLI/brand plumbing is already ready to wire up** — just add `temperature`/`top_p` to `submit_runpod_job()` payload and CLI args once the handler supports them.
 
 **Reference:** Qwen3-TTS models accept all `model.generate()` kwargs: https://github.com/QwenLM/Qwen3-TTS
 

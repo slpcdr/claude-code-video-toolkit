@@ -183,6 +183,11 @@ python tools/qwen3_tts.py --list-voices
 python tools/qwen3_tts.py --list-tones
 python tools/qwen3_tts.py --setup
 
+# Control expressiveness (temperature) and sampling (top_p)
+python tools/qwen3_tts.py --text "Hello" --tone warm --temperature 1.2 --output expressive.mp3
+python tools/qwen3_tts.py --text "Hello" --tone warm --temperature 0.4 --output consistent.mp3
+python tools/voiceover.py --provider qwen3 --tone warm --temperature 0.8 --scene-dir public/audio/scenes --json
+
 # Background music
 python tools/music.py --prompt "Subtle corporate" --duration 120 --output music.mp3
 
@@ -444,10 +449,15 @@ python tools/qwen3_tts.py --text "Hello" --ref-audio sample.wav --ref-text "tran
 python tools/qwen3_tts.py --list-voices
 python tools/qwen3_tts.py --list-tones
 
+# Control expressiveness (temperature) and sampling (top_p)
+python tools/qwen3_tts.py --text "Hello" --tone warm --temperature 1.2 --output expressive.mp3
+python tools/qwen3_tts.py --text "Hello" --tone warm --temperature 0.4 --output consistent.mp3
+
 # Via voiceover.py (per-scene generation)
 python tools/voiceover.py --provider qwen3 --speaker Ryan --scene-dir public/audio/scenes --json
 python tools/voiceover.py --provider qwen3 --tone warm --scene-dir public/audio/scenes --json
 python tools/voiceover.py --provider qwen3 --instruct "Speak warmly" --script script.txt --output out.mp3
+python tools/voiceover.py --provider qwen3 --tone warm --temperature 0.8 --scene-dir public/audio/scenes --json
 ```
 
 **Built-in speakers:** Ryan (EN), Aiden (EN), Vivian (ZH), Serena (ZH), Uncle_Fu (ZH), Dylan (ZH), Eric (ZH), Ono_Anna (JA), Sohee (KO)

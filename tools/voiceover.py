@@ -169,6 +169,16 @@ Examples:
         type=str,
         help="Qwen3-TTS transcript of reference audio (required with --ref-audio)",
     )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        help="Qwen3-TTS expressiveness (default: model default ~0.7, range: 0.3-1.5)",
+    )
+    parser.add_argument(
+        "--top-p",
+        type=float,
+        help="Qwen3-TTS nucleus sampling (default: model default ~0.8, range: 0.1-1.0)",
+    )
 
     # Brand integration
     parser.add_argument(
@@ -280,6 +290,8 @@ def generate_single_audio_qwen3(
     instruct: str = "",
     ref_audio: str | None = None,
     ref_text: str | None = None,
+    temperature: float | None = None,
+    top_p: float | None = None,
 ) -> dict:
     """Generate a single audio file from script text using Qwen3-TTS. Returns result dict."""
     from qwen3_tts import generate_audio
@@ -295,6 +307,8 @@ def generate_single_audio_qwen3(
         ref_audio=ref_audio,
         ref_text=ref_text,
         verbose=False,
+        temperature=temperature,
+        top_p=top_p,
     )
 
 
@@ -318,6 +332,8 @@ def process_scene_directory(
     instruct: str = "",
     ref_audio: str | None = None,
     ref_text: str | None = None,
+    temperature: float | None = None,
+    top_p: float | None = None,
 ) -> list[dict]:
     """Process all .txt files in directory, generate .mp3 for each."""
     txt_files = sorted(scene_dir.glob("*.txt"))
@@ -382,6 +398,8 @@ def process_scene_directory(
                     instruct=scene_instruct,
                     ref_audio=ref_audio,
                     ref_text=ref_text,
+                    temperature=temperature,
+                    top_p=top_p,
                 )
             else:
                 result = generate_single_audio(
@@ -577,6 +595,8 @@ def main():
                 instruct=args.instruct,
                 ref_audio=args.ref_audio,
                 ref_text=args.ref_text,
+                temperature=args.temperature,
+                top_p=args.top_p,
             )
             result = {
                 "dry_run": True,
@@ -600,6 +620,10 @@ def main():
                 result["language"] = args.language
                 if args.instruct:
                     result["instruct"] = args.instruct
+                if args.temperature is not None:
+                    result["temperature"] = args.temperature
+                if args.top_p is not None:
+                    result["top_p"] = args.top_p
             if args.concat:
                 result["concat_output"] = args.concat
             if args.json:
@@ -624,6 +648,8 @@ def main():
             instruct=args.instruct,
             ref_audio=args.ref_audio,
             ref_text=args.ref_text,
+            temperature=args.temperature,
+            top_p=args.top_p,
         )
 
         # Build final result
@@ -691,6 +717,10 @@ def main():
             result["language"] = args.language
             if args.instruct:
                 result["instruct"] = args.instruct
+            if args.temperature is not None:
+                result["temperature"] = args.temperature
+            if args.top_p is not None:
+                result["top_p"] = args.top_p
         if args.json:
             print(json.dumps(result, indent=2))
         else:
@@ -719,6 +749,8 @@ def main():
             instruct=args.instruct,
             ref_audio=args.ref_audio,
             ref_text=args.ref_text,
+            temperature=args.temperature,
+            top_p=args.top_p,
         )
     else:
         result = generate_single_audio(

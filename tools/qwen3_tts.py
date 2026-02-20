@@ -297,6 +297,8 @@ def submit_runpod_job(
     ref_text: str | None = None,
     output_format: str = "mp3",
     r2_config: dict | None = None,
+    temperature: float | None = None,
+    top_p: float | None = None,
 ) -> dict | None:
     """Submit a Qwen3-TTS job to RunPod serverless endpoint."""
     url = f"https://api.runpod.ai/v2/{endpoint_id}/run"
@@ -317,6 +319,11 @@ def submit_runpod_job(
         payload["input"]["speaker"] = speaker
         if instruct:
             payload["input"]["instruct"] = instruct
+
+    if temperature is not None:
+        payload["input"]["temperature"] = temperature
+    if top_p is not None:
+        payload["input"]["top_p"] = top_p
 
     if r2_config:
         payload["input"]["r2"] = {
@@ -433,6 +440,8 @@ def generate_audio(
     output_format: str = "mp3",
     timeout: int = 300,
     verbose: bool = True,
+    temperature: float | None = None,
+    top_p: float | None = None,
 ) -> dict:
     """Generate audio using Qwen3-TTS via RunPod.
 
@@ -496,6 +505,8 @@ def generate_audio(
         ref_text=ref_text,
         output_format=output_format,
         r2_config=r2_config,
+        temperature=temperature,
+        top_p=top_p,
     )
 
     if not job_response:
@@ -968,6 +979,18 @@ Examples:
         help="Output format (default: mp3)",
     )
 
+    # Generation parameters
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        help="Expressiveness (default: model default ~0.7, range: 0.3-1.5)",
+    )
+    parser.add_argument(
+        "--top-p",
+        type=float,
+        help="Nucleus sampling (default: model default ~0.8, range: 0.1-1.0)",
+    )
+
     # RunPod options
     parser.add_argument(
         "--timeout",
@@ -1101,6 +1124,8 @@ def main():
         output_format=args.format,
         timeout=args.timeout,
         verbose=verbose,
+        temperature=args.temperature,
+        top_p=args.top_p,
     )
 
     if not result.get("success"):

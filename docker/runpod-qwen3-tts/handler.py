@@ -24,6 +24,8 @@ Input format:
         # Options
         "language": str,                # Language hint (default: "Auto")
         "output_format": str,           # "mp3" (default) or "wav"
+        "temperature": float,          # Expressiveness (default: 0.7, range: 0.3-1.5)
+        "top_p": float,                # Nucleus sampling (default: 0.8, range: 0.1-1.0)
 
         # R2 config for result upload
         "r2": {
@@ -187,23 +189,25 @@ def wav_to_mp3(wav_path: Path, mp3_path: Path) -> bool:
         return False
 
 
-def generate_custom_voice(text: str, speaker: str, language: str, instruct: str = "") -> tuple:
+def generate_custom_voice(text: str, speaker: str, language: str, instruct: str = "", **kwargs) -> tuple:
     """Generate audio using CustomVoice model (built-in speakers)."""
     model = get_custom_voice_model()
 
-    kwargs = {
+    gen_kwargs = {
         "text": text,
         "language": language,
         "speaker": speaker,
     }
     if instruct:
-        kwargs["instruct"] = instruct
+        gen_kwargs["instruct"] = instruct
+    if kwargs:
+        gen_kwargs.update(kwargs)
 
-    wavs, sr = model.generate_custom_voice(**kwargs)
+    wavs, sr = model.generate_custom_voice(**gen_kwargs)
     return wavs[0], sr
 
 
-def generate_clone_voice(text: str, language: str, ref_audio_path: Path, ref_text: str) -> tuple:
+def generate_clone_voice(text: str, language: str, ref_audio_path: Path, ref_text: str, **kwargs) -> tuple:
     """Generate audio using Base model (voice cloning)."""
     model = get_base_model()
 
@@ -212,11 +216,15 @@ def generate_clone_voice(text: str, language: str, ref_audio_path: Path, ref_tex
         ref_text=ref_text,
     )
 
-    wavs, sr = model.generate_voice_clone(
-        text=text,
-        language=language,
-        voice_clone_prompt=prompt,
-    )
+    gen_kwargs = {
+        "text": text,
+        "language": language,
+        "voice_clone_prompt": prompt,
+    }
+    if kwargs:
+        gen_kwargs.update(kwargs)
+
+    wavs, sr = model.generate_voice_clone(**gen_kwargs)
     return wavs[0], sr
 
 
@@ -278,6 +286,13 @@ def handler(job: dict) -> dict:
     output_format = job_input.get("output_format", "mp3")
     r2_config = job_input.get("r2")
 
+    # Generation kwargs (optional)
+    gen_kwargs = {}
+    if "temperature" in job_input:
+        gen_kwargs["temperature"] = float(job_input["temperature"])
+    if "top_p" in job_input:
+        gen_kwargs["top_p"] = float(job_input["top_p"])
+
     work_dir = Path(tempfile.mkdtemp(prefix=f"qwen3tts_{job_id}_"))
     log(f"Working directory: {work_dir}")
 
@@ -307,6 +322,7 @@ def handler(job: dict) -> dict:
                 language=language,
                 ref_audio_path=ref_audio_path,
                 ref_text=ref_text,
+                **gen_kwargs,
             )
 
         else:
@@ -320,6 +336,7 @@ def handler(job: dict) -> dict:
                 speaker=speaker,
                 language=language,
                 instruct=instruct,
+                **gen_kwargs,
             )
 
         # Write WAV
