@@ -36,7 +36,7 @@ Parse output for:
 ```
 1. Read current version from _internal/toolkit-registry.json
 2. Fetch latest from GitHub API:
-   https://api.github.com/repos/digitalsamba/claude-code-video-toolkit/releases/latest
+   https://api.github.com/repos/digitalsamba/antigravity-video-toolkit/releases/latest
 3. Compare versions
 ```
 
@@ -174,7 +174,7 @@ Changes:
 
 See _internal/CHANGELOG.md for full details.
 
-Restart Claude Code to load new skills and commands.
+Restart Google Antigravity to load new skills and workflows.
 ```
 
 ---
@@ -233,8 +233,8 @@ git log HEAD..origin/main --oneline
 This command evolves through use. If something's awkward or missing:
 
 **Local improvements:**
-1. Say "improve this" → Claude captures in `_internal/BACKLOG.md`
-2. Edit `.claude/commands/versions.md`
+1. Say "improve this" → Antigravity captures in `_internal/BACKLOG.md`
+2. Edit `.agents/workflows/versions.md`
 3. Share upstream → `gh pr create`
 
 **Future ideas:**

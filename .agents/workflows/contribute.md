@@ -42,7 +42,7 @@ Then generate issue with `gh issue create`:
 
 ```bash
 gh issue create \
-  --repo digitalsamba/claude-code-video-toolkit \
+  --repo digitalsamba/antigravity-video-toolkit \
   --title "Bug: description" \
   --body "## Description
 
@@ -70,8 +70,8 @@ Reported via /contribute command"
 Let me check what would be shared...
 
 ✅ Safe to share:
-   .claude/commands/video.md (modified)
-   .claude/skills/ffmpeg/SKILL.md (modified)
+   .agents/workflows/video.md (modified)
+   .agents/skills/ffmpeg/SKILL.md (modified)
 
 ❌ Ignored (stays private):
    projects/ (your video work)
@@ -91,7 +91,7 @@ git status
 git checkout -b improve/short-description
 
 # Stage toolkit files only
-git add .claude/ templates/ lib/ docs/ _internal/ tools/ brands/default/
+git add .agents/ templates/ lib/ docs/ _internal/ tools/ brands/default/
 
 # Commit with description
 git commit -m "$(cat <<'EOF'
@@ -99,7 +99,7 @@ Improve: short description
 
 Longer description of what changed and why.
 
-🤖 Generated with Claude Code
+🤖 Generated with Google Antigravity
 EOF
 )"
 ```
@@ -124,7 +124,7 @@ What this PR improves.
 How to test the improvement.
 
 ---
-🤖 Generated with Claude Code
+🤖 Generated with Google Antigravity
 EOF
 )"
 ```
@@ -153,7 +153,7 @@ After merge, you can update your local copy:
 ```
 Which skill would you like to share?
 
-Found in .claude/skills/:
+Found in .agents/skills/:
   1. ffmpeg (beta) - already in toolkit
   2. my-new-skill (draft) - your addition
 
@@ -170,7 +170,7 @@ Check skill is ready:
 
 ### Step 3: Create PR
 
-Same as Option 2, but focused on `.claude/skills/{name}/`
+Same as Option 2, but focused on `.agents/skills/{name}/`
 
 ---
 
@@ -223,7 +223,7 @@ Example projects showcase real-world usage. They include configs, scripts, and d
 Found in projects/:
 
   1. digital-samba-skill-demo
-     Marketing video for DS Claude Code skill
+     Marketing video for DS Google Antigravity skill
      Template: product-demo style
 
   2. sprint-review-cho-oyu
@@ -244,7 +244,7 @@ Website URL (optional, for backlink): ___
 This will appear in:
   - examples/README.md (Contributors table)
   - The example's own README.md
-  - Project's CLAUDE.md
+  - Project's AGENT.md
 
 Leave blank to contribute anonymously.
 ```
@@ -265,7 +265,7 @@ The following will be INCLUDED:
   ✅ Documentation
      - VIDEO-SPEC.md
      - VOICEOVER-SCRIPT.md
-     - CLAUDE.md
+     - AGENT.md
      - PROJECT-STATUS.md
 
   ✅ Small assets (logos, icons)
@@ -405,7 +405,7 @@ git commit -m "Add example: {name}
 
 Note: Large media files not included. See ASSETS-NEEDED.md.
 
-🤖 Generated with Claude Code"
+🤖 Generated with Google Antigravity"
 
 gh pr create \
   --title "Add example: {name}" \
@@ -426,7 +426,7 @@ Large media files are gitignored. Users create their own using:
 - tools/music.py for background music
 
 ---
-🤖 Generated with Claude Code"
+🤖 Generated with Google Antigravity"
 ```
 
 ---
@@ -452,10 +452,10 @@ git status --porcelain | grep -E "^(projects/|assets/voices/|\.env)" && echo "�
 This command evolves through use. If something's awkward or missing:
 
 **Local improvements:**
-1. Say "improve this" → Claude captures in `_internal/BACKLOG.md`
-2. Edit `.claude/commands/contribute.md` → Update `_internal/CHANGELOG.md`
+1. Say "improve this" → Antigravity captures in `_internal/BACKLOG.md`
+2. Edit `.agents/workflows/contribute.md` → Update `_internal/CHANGELOG.md`
 3. Share upstream → `gh pr create`
 
 **Remote contributions:**
-- Issues: `github.com/digitalsamba/claude-code-video-toolkit/issues`
+- Issues: `github.com/digitalsamba/antigravity-video-toolkit/issues`
 - PRs welcome for contribution workflow improvements

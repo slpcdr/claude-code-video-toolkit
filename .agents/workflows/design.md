@@ -230,7 +230,7 @@ These are common scene types, but projects may have different ones:
 ```
 User: /design
 
-Claude: Let me discover your project...
+Antigravity: Let me discover your project...
 
 Found project: "q4-release-video"
 Template: sprint-review
@@ -251,7 +251,7 @@ Which scene would you like to refine?
 
 User: 1
 
-Claude: Let me gather context for the title scene...
+Antigravity: Let me gather context for the title scene...
 
 [Reads TitleSlide.tsx, sprint-config.ts, theme.ts]
 [Reads overview scene to understand what follows]
@@ -266,7 +266,7 @@ What mood should this title scene set?
 
 User: Warm and celebratory - this was a big team effort
 
-Claude: Got it - warm, celebratory mood for a team achievement.
+Antigravity: Got it - warm, celebratory mood for a team achievement.
 
 Invoking frontend-design skill...
 

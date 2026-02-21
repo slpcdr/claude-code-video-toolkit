@@ -229,7 +229,7 @@ Next steps:
 
 See docs/creating-templates.md for detailed guidance.
 
-⚠️  Restart Claude Code to see the new template in /video.
+⚠️  Restart Google Antigravity to see the new template in /video.
 ```
 
 ---
@@ -274,7 +274,7 @@ Templates are designed to grow and improve over time. Track evolution in each te
    - New component? → Add to appropriate folder
    - New config option? → Extend config types
 3. Implement with backward compatibility
-4. Update template README and CLAUDE.md
+4. Update template README and AGENT.md
 5. Test in existing projects
 6. Document in _internal/CHANGELOG.md
 ```
@@ -307,12 +307,12 @@ When patterns emerge across templates:
 This command evolves through use. If something's awkward or missing:
 
 **Local improvements:**
-1. Say "improve this" → Claude captures in `_internal/BACKLOG.md`
-2. Edit `.claude/commands/template.md` → Update `_internal/CHANGELOG.md`
+1. Say "improve this" → Antigravity captures in `_internal/BACKLOG.md`
+2. Edit `.agents/workflows/template.md` → Update `_internal/CHANGELOG.md`
 3. Share upstream → `gh pr create`
 
 **Remote contributions:**
-- Issues: `github.com/digitalsamba/claude-code-video-toolkit/issues`
+- Issues: `github.com/digitalsamba/antigravity-video-toolkit/issues`
 - PRs welcome for new templates, components, documentation
 
 History: Created as unified template listing/creation command

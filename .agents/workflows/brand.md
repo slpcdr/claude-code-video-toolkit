@@ -334,12 +334,12 @@ This command is referenced by:
 This command evolves through use. If something's awkward or missing:
 
 **Local improvements:**
-1. Say "improve this" → Claude captures in `_internal/BACKLOG.md`
-2. Edit `.claude/commands/brand.md` → Update `_internal/CHANGELOG.md`
+1. Say "improve this" → Antigravity captures in `_internal/BACKLOG.md`
+2. Edit `.agents/workflows/brand.md` → Update `_internal/CHANGELOG.md`
 3. Share upstream → `gh pr create`
 
 **Remote contributions:**
-- Issues: `github.com/digitalsamba/claude-code-video-toolkit/issues`
+- Issues: `github.com/digitalsamba/antigravity-video-toolkit/issues`
 - PRs welcome for new features, bug fixes, documentation
 
 History: `/new-brand` → `/brand` (unified with list/edit support)

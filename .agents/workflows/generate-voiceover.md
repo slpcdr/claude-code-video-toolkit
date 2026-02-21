@@ -73,7 +73,7 @@ Before gathering configuration, check if we're in a project context:
      - If per-scene, set `audio.voiceover.mode: "per_scene"`
      - Transition `phase` if appropriate (review → audio → editing)
    - Add session entry
-   - Regenerate project CLAUDE.md
+   - Regenerate project AGENT.md
 
 ---
 
@@ -358,10 +358,10 @@ For your config:
 This command evolves through use. If something's awkward or missing:
 
 **Local improvements:**
-1. Say "improve this" → Claude captures in `_internal/BACKLOG.md`
-2. Edit `.claude/commands/generate-voiceover.md` → Update `_internal/CHANGELOG.md`
+1. Say "improve this" → Antigravity captures in `_internal/BACKLOG.md`
+2. Edit `.agents/workflows/generate-voiceover.md` → Update `_internal/CHANGELOG.md`
 3. Share upstream → `gh pr create`
 
 **Remote contributions:**
-- Issues: `github.com/digitalsamba/claude-code-video-toolkit/issues`
+- Issues: `github.com/digitalsamba/antigravity-video-toolkit/issues`
 - PRs welcome for voice features, script formats, documentation

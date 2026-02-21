@@ -1,10 +1,10 @@
-# claude-code-video-toolkit
+# antigravity-video-toolkit
 
-This file provides guidance to Claude Code (claude.ai/code) when working with this video production toolkit.
+This file provides guidance to Google Antigravity when working with this video production toolkit.
 
 ## Overview
 
-**claude-code-video-toolkit** is an AI-native video production workspace. It provides Claude Code with the skills, commands, and tools to create professional videos from concept to final render.
+**antigravity-video-toolkit** is an AI-native video production workspace. It provides Google Antigravity with the skills, workflows, and tools to create professional videos from concept to final render.
 
 **Key capabilities:**
 - Programmatic video creation with Remotion (React-based)
@@ -15,10 +15,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with th
 ## Directory Structure
 
 ```
-claude-code-video-toolkit/
-├── .claude/
-│   ├── skills/          # Domain knowledge for Claude
-│   └── commands/        # Guided workflows
+antigravity-video-toolkit/
+├── .agents/
+│   ├── skills/          # Domain knowledge for Antigravity
+│   └── workflows/       # Guided workflows
 ├── tools/               # Python CLI automation
 ├── templates/           # Video templates
 │   ├── sprint-review/   # Sprint review video template
@@ -63,7 +63,7 @@ npm run render   # Export
 
 ## Skills Reference
 
-Claude Code has deep knowledge in these domains via `.claude/skills/`:
+Google Antigravity has deep knowledge in these domains via `.agents/skills/`:
 
 | Skill | Status | Purpose |
 |-------|--------|---------|
@@ -77,7 +77,7 @@ Claude Code has deep knowledge in these domains via `.claude/skills/`:
 
 > **Note:** `remotion-official` is synced weekly from upstream via GitHub Actions. See `docs/remotion-skills-sync.md` for details.
 
-## Commands
+## Workflows
 
 | Command | Description |
 |---------|-------------|
@@ -94,7 +94,7 @@ Claude Code has deep knowledge in these domains via `.claude/skills/`:
 | `/redub` | Redub existing video with different voice |
 | `/versions` | Check dependency versions and toolkit updates |
 
-> **Note:** After creating or modifying commands/skills, restart Claude Code to load changes.
+> **Note:** After creating or modifying workflows/skills, restart Google Antigravity to load changes.
 
 ## Templates
 
@@ -255,7 +255,7 @@ The `--setup` command creates a RunPod serverless endpoint using pre-built image
 - `ghcr.io/conalmullan/video-toolkit-qwen-edit:latest`
 - `ghcr.io/conalmullan/video-toolkit-realesrgan:latest`
 
-See `docs/qwen-edit-patterns.md` and `.claude/skills/qwen-edit/` for prompting guidance.
+See `docs/qwen-edit-patterns.md` and `.agents/skills/qwen-edit/` for prompting guidance.
 
 ### Utility Tools vs Project Tools
 
@@ -564,7 +564,7 @@ python tools/notebooklm_brand.py \
 6. **Generate audio** - Use `/generate-voiceover` for AI narration
 7. **Configure** - Update config file with asset paths and timing
 8. **Preview** - `npm run studio` in project directory
-9. **Iterate** - Adjust timing, content, styling with Claude Code
+9. **Iterate** - Adjust timing, content, styling with Google Antigravity
 10. **Render** - `npm run render` for final MP4
 
 ## Project Lifecycle
@@ -776,12 +776,12 @@ The frontend-design skill understands this narrative and helps create appropriat
 ## Toolkit vs Project Work
 
 **Toolkit work** (evolves the toolkit itself):
-- Skills, commands, templates, tools
+- Skills, workflows, templates, tools
 - Tracked in `_internal/ROADMAP.md`
 
 **Project work** (creates videos):
 - Lives in `projects/`
-- Each project has `project.json` (machine-readable state) and auto-generated `CLAUDE.md`
+- Each project has `project.json` (machine-readable state) and auto-generated `AGENT.md`
 
 Keep these separate. Don't mix toolkit improvements with video production.
 

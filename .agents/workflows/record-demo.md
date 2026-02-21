@@ -33,7 +33,7 @@ Before gathering configuration, check if we're in a project context:
 3. **After recording completes:**
    - Update `project.json` scene status to `"asset-present"`
    - Add session entry
-   - Regenerate project CLAUDE.md
+   - Regenerate project AGENT.md
 
 ---
 
@@ -136,10 +136,10 @@ Before gathering configuration, check if we're in a project context:
 This command evolves through use. If something's awkward or missing:
 
 **Local improvements:**
-1. Say "improve this" → Claude captures in `_internal/BACKLOG.md`
-2. Edit `.claude/commands/record-demo.md` → Update `_internal/CHANGELOG.md`
+1. Say "improve this" → Antigravity captures in `_internal/BACKLOG.md`
+2. Edit `.agents/workflows/record-demo.md` → Update `_internal/CHANGELOG.md`
 3. Share upstream → `gh pr create`
 
 **Remote contributions:**
-- Issues: `github.com/digitalsamba/claude-code-video-toolkit/issues`
+- Issues: `github.com/digitalsamba/antigravity-video-toolkit/issues`
 - PRs welcome for recording features, browser support, documentation

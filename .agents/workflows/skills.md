@@ -13,7 +13,7 @@ On invocation, scan skills and present:
 ### Step 1: Scan Skills
 
 ```
-1. Glob .claude/skills/*/SKILL.md
+1. Glob .agents/skills/*/SKILL.md
 2. For each skill:
    - Read SKILL.md frontmatter for metadata
    - Extract: name, status, description, triggers
@@ -84,8 +84,8 @@ Media:
 
 ## Files
 
-- .claude/skills/remotion/SKILL.md
-- .claude/skills/remotion/reference.md (detailed API docs)
+- .agents/skills/remotion/SKILL.md
+- .agents/skills/remotion/reference.md (detailed API docs)
 
 ## Related
 
@@ -112,7 +112,7 @@ Category: (video, audio, automation, other)
 ### Step 2: Define Triggers
 
 ```
-When should Claude use this skill?
+When should Antigravity use this skill?
 
 List trigger phrases (one per line):
 - "record terminal session"
@@ -133,7 +133,7 @@ What knowledge should this skill contain?
 
 ### Step 4: Create Skill Files
 
-1. Create directory: `.claude/skills/{name}/`
+1. Create directory: `.agents/skills/{name}/`
 
 2. Write `SKILL.md`:
 ```markdown
@@ -176,7 +176,7 @@ Use this skill when:
 {
   "skills": {
     "{name}": {
-      "path": ".claude/skills/{name}/",
+      "path": ".agents/skills/{name}/",
       "description": "Brief description of the skill",
       "status": "draft",
       "created": "YYYY-MM-DD",
@@ -189,7 +189,7 @@ Use this skill when:
 ### Step 5: Confirmation
 
 ```
-Skill created: .claude/skills/{name}/
+Skill created: .agents/skills/{name}/
 
 Files:
   ✅ SKILL.md - core skill knowledge
@@ -203,7 +203,7 @@ Next steps:
   3. Promote to beta once validated
   4. See _internal/ROADMAP.md for maturity process
 
-⚠️  IMPORTANT: Restart Claude Code to load the new skill.
+⚠️  IMPORTANT: Restart Google Antigravity to load the new skill.
 ```
 
 ---
@@ -235,7 +235,7 @@ Next steps:
 ## Skill Structure Reference
 
 ```
-.claude/skills/{name}/
+.agents/skills/{name}/
 ├── SKILL.md         # Core knowledge (required)
 │   - Frontmatter: name, status, description, triggers
 │   - When to use
@@ -258,7 +258,7 @@ Skills are tracked in `_internal/toolkit-registry.json`:
 {
   "skills": {
     "remotion": {
-      "path": ".claude/skills/remotion/",
+      "path": ".agents/skills/remotion/",
       "description": "Remotion video framework",
       "status": "stable",
       "created": "2025-12-04",
@@ -274,7 +274,7 @@ Skills are tracked in `_internal/toolkit-registry.json`:
 
 **After creating or modifying skills:**
 ```
-⚠️  Restart Claude Code to load changes.
+⚠️  Restart Google Antigravity to load changes.
 
 Skills are loaded at startup. New skills, updated triggers,
 or modified content won't take effect until you restart.
@@ -287,12 +287,12 @@ or modified content won't take effect until you restart.
 This command evolves through use. If something's awkward or missing:
 
 **Local improvements:**
-1. Say "improve this" → Claude captures in `_internal/BACKLOG.md`
-2. Edit `.claude/commands/skills.md` → Update `_internal/CHANGELOG.md`
+1. Say "improve this" → Antigravity captures in `_internal/BACKLOG.md`
+2. Edit `.agents/workflows/skills.md` → Update `_internal/CHANGELOG.md`
 3. Share upstream → `gh pr create`
 
 **Remote contributions:**
-- Issues: `github.com/digitalsamba/claude-code-video-toolkit/issues`
+- Issues: `github.com/digitalsamba/antigravity-video-toolkit/issues`
 - PRs welcome for new skills, improvements, documentation
 
 History: Created as unified skill management command

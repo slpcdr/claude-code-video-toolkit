@@ -128,9 +128,9 @@ After reconciliation:
 - Add session entry: `{ date: "YYYY-MM-DD", summary: "Resumed project" }`
 - Update `updated` timestamp
 
-### Step 5: Regenerate CLAUDE.md
+### Step 5: Regenerate AGENT.md
 
-Update the project's CLAUDE.md with current state (see CLAUDE.md Generation below).
+Update the project's AGENT.md with current state (see AGENT.md Generation below).
 
 ---
 
@@ -275,7 +275,7 @@ Help refine:
 5. **Copy brand assets:**
    Logo from `brands/{brand}/assets/` to `public/images/`
 
-6. **Generate CLAUDE.md:**
+6. **Generate AGENT.md:**
    Auto-generated project status (see below)
 
 7. **Install dependencies:**
@@ -310,9 +310,9 @@ Which would you like to start with?
 
 ---
 
-## CLAUDE.md Generation
+## AGENT.md Generation
 
-Generate/update the project's CLAUDE.md after any state change:
+Generate/update the project's AGENT.md after any state change:
 
 ```markdown
 # Project: {name}
@@ -342,7 +342,7 @@ Generate/update the project's CLAUDE.md after any state change:
 1. {Priority action based on phase and blockers}
 2. {Secondary action}
 
-## Quick Commands
+## Quick Workflows
 
 ```bash
 cd projects/{name}
@@ -403,7 +403,7 @@ When `/scene-review` marks review as complete:
 
 ---
 
-## Integration with Other Commands
+## Integration with Other Workflows
 
 ### /scene-review
 
@@ -419,7 +419,7 @@ After recording completes:
 2. Update scene's `status: "asset-present"`
 3. Update scene's `visual.asset` path
 4. Add session entry
-5. Regenerate CLAUDE.md
+5. Regenerate AGENT.md
 
 ### /generate-voiceover
 
@@ -428,7 +428,7 @@ After generation:
 2. Update `audio.voiceover.status: "present"`
 3. Transition phase if appropriate
 4. Add session entry
-5. Regenerate CLAUDE.md
+5. Regenerate AGENT.md
 
 ---
 
@@ -436,8 +436,8 @@ After generation:
 
 1. **Scan first** - Always know what exists before asking what to do
 2. **Reconcile reality** - Filesystem is truth, project.json is intent
-3. **Track sessions** - Help Claude understand context across sessions
-4. **Auto-generate CLAUDE.md** - Always-current human+Claude readable status
+3. **Track sessions** - Help Antigravity understand context across sessions
+4. **Auto-generate AGENT.md** - Always-current human+Antigravity readable status
 5. **Guide next action** - Never leave user wondering what's next
 6. **Stay flexible** - Handle partial states, missing files, manual edits
 
@@ -448,12 +448,12 @@ After generation:
 This command evolves through use. If something's awkward or missing:
 
 **Local improvements:**
-1. Say "improve this" → Claude captures in `_internal/BACKLOG.md`
-2. Edit `.claude/commands/video.md` → Update `_internal/CHANGELOG.md`
+1. Say "improve this" → Antigravity captures in `_internal/BACKLOG.md`
+2. Edit `.agents/workflows/video.md` → Update `_internal/CHANGELOG.md`
 3. Share upstream → `gh pr create`
 
 **Remote contributions:**
-- Issues: `github.com/digitalsamba/claude-code-video-toolkit/issues`
+- Issues: `github.com/digitalsamba/antigravity-video-toolkit/issues`
 - PRs welcome for new features, bug fixes, documentation
 
 History: `/new-sprint-video` → `/new-video` → `/video` (unified with resume support)
