@@ -1,6 +1,6 @@
 # Toolkit Changelog
 
-All notable changes to claude-code-video-toolkit.
+All notable changes to antigravity-video-toolkit.
 
 > Releases are automated via GitHub Actions. See `.github/workflows/release.yml`.
 
@@ -9,13 +9,13 @@ All notable changes to claude-code-video-toolkit.
 ## 2026-02-19 (v0.9.3)
 
 ### Added
-- **Official Remotion skills** — Synced 33 rule files from [remotion-dev/skills](https://github.com/remotion-dev/skills) into `.claude/skills/remotion-official/`
+- **Official Remotion skills** — Synced 33 rule files from [remotion-dev/skills](https://github.com/remotion-dev/skills) into `.agents/skills/remotion-official/`
 - **Weekly sync workflow** — GitHub Actions checks upstream every Monday and opens a PR if files changed
 - **Sync documentation** — `docs/remotion-skills-sync.md` explaining the split and sync process
 
 ### Changed
 - **Remotion skill split** — Custom `remotion` skill trimmed from ~470 to ~160 lines, now covers only toolkit-specific patterns (transitions, components, conventions). Core framework knowledge deferred to `remotion-official`
-- Updated CLAUDE.md skills table with both remotion skills
+- Updated AGENT.md skills table with both remotion skills
 
 ---
 
@@ -40,7 +40,7 @@ All notable changes to claude-code-video-toolkit.
   - Concat option for SadTalker integration
 
 ### Changed
-- Updated documentation (CLAUDE.md, README.md, getting-started.md)
+- Updated documentation (AGENT.md, README.md, getting-started.md)
 
 ---
 
@@ -77,7 +77,7 @@ All notable changes to claude-code-video-toolkit.
 
 ### Changed
 - ElevenLabs TTS: Added `eleven_v3` (alpha) model option
-- Updated `CLAUDE.md` with dewatermark and locate_watermark documentation
+- Updated `AGENT.md` with dewatermark and locate_watermark documentation
 - Updated `.env.example` with RunPod and R2 configuration
 
 ---
@@ -94,7 +94,7 @@ All notable changes to claude-code-video-toolkit.
   - Solves: TTS often starts fast and ends slow, causing 3-4+ second drift
 
 ### Changed
-- Updated `CLAUDE.md` with Redub Sync Mode documentation
+- Updated `AGENT.md` with Redub Sync Mode documentation
 - TTS duration now measured via ffprobe (more accurate than timestamp data)
 
 ---
@@ -108,7 +108,7 @@ All notable changes to claude-code-video-toolkit.
   - Works on any video file without requiring a project structure
 
 ### Changed
-- Updated `CLAUDE.md` with addmusic documentation
+- Updated `AGENT.md` with addmusic documentation
 
 ---
 
@@ -133,7 +133,7 @@ All notable changes to claude-code-video-toolkit.
   - Utility tools (redub): Quick transformations on existing videos, no project needed
 
 ### Changed
-- Updated `CLAUDE.md` with utility tools documentation
+- Updated `AGENT.md` with utility tools documentation
 - Updated Python Tools section to include redub
 
 ---
@@ -183,7 +183,7 @@ All notable changes to claude-code-video-toolkit.
 - **Slash commands not loading** - Renamed `/skill` to `/skills` to avoid conflict with built-in `Skill` tool. The naming collision was silently preventing ALL custom commands from loading. Bug reported to Anthropic.
 
 ### Removed
-- **`/review` command** - Clashed with Claude Code's built-in PR review command. Replaced by `/scene-review`.
+- **`/review` command** - Clashed with Google Antigravity's built-in PR review command. Replaced by `/scene-review`.
 
 ### Added
 - **Animation components** (`lib/components/`)
@@ -240,7 +240,7 @@ All notable changes to claude-code-video-toolkit.
   - `README.md` - Documentation for project lifecycle and phases
   - Projects now track: phase, scenes, assets, audio, session history
   - Filesystem reconciliation (compares intent vs reality)
-  - Auto-generated CLAUDE.md per project for instant context
+  - Auto-generated AGENT.md per project for instant context
 
 - **Unified commands** - Context-aware entry points that list existing items or create new:
   - `/video` - Replaces `/new-video`. Scans projects, offers resume or new
@@ -258,7 +258,7 @@ All notable changes to claude-code-video-toolkit.
 - `/new-brand` - Replaced by `/brand`
 
 ### Notes
-- After creating/modifying commands or skills, restart Claude Code to load changes
+- After creating/modifying commands or skills, restart Google Antigravity to load changes
 
 ---
 
@@ -313,7 +313,7 @@ All notable changes to claude-code-video-toolkit.
   - Choose brand from available brands
   - **Scene-centric workflow:**
     - Content gathering (URLs, notes, paste)
-    - Claude proposes scene breakdown
+    - Antigravity proposes scene breakdown
     - Interactive scene refinement
     - Scene types: title, overview, demo, split-demo, stats, credits, problem, solution, feature, cta
     - Visual types: `[DEMO]`, `[SCREENSHOT]`, `[EXTERNAL VIDEO]`, `[SLIDE]`
@@ -325,18 +325,18 @@ All notable changes to claude-code-video-toolkit.
 ### Changed
 - **Replaced `/new-sprint-video` with `/new-video`** - single entry point for all templates
 - Templates now load theme from `brand.ts` instead of hardcoded values
-- Updated CLAUDE.md with new workflow and commands
+- Updated AGENT.md with new workflow and commands
 - Updated ROADMAP.md - Phase 3 template-brand integration complete
-- **Added Video Timing section to CLAUDE.md** - pacing rules, scene durations, timing calculations
+- **Added Video Timing section to AGENT.md** - pacing rules, scene durations, timing calculations
 - **Removed `/convert-asset` from backlog** - FFmpeg skill handles this conversationally
-- **Removed `/sync-timing` from backlog** - timing knowledge now in CLAUDE.md
+- **Removed `/sync-timing` from backlog** - timing knowledge now in AGENT.md
 
 ---
 
 ## 2025-12-08
 
 ### Added
-- **Open source release** - Published to GitHub at digitalsamba/claude-code-video-toolkit
+- **Open source release** - Published to GitHub at digitalsamba/antigravity-video-toolkit
 - **Brand profiles system** (`brands/`)
   - `brand.json` for colors, fonts, typography
   - `voice.json` for ElevenLabs voice settings

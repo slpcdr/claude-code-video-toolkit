@@ -6,14 +6,14 @@ To run this example, you'll need to create these media assets.
 
 | File | Duration | Description | How to Create |
 |------|----------|-------------|---------------|
-| `remotion/public/demos/skill-install.mp4` | ~15s | Claude Code skill installation | Convert `assets/claude-code-install.gif` with FFmpeg |
+| `remotion/public/demos/skill-install.mp4` | ~15s | Google Antigravity skill installation | Convert `assets/antigravity-code-install.gif` with FFmpeg |
 | `remotion/public/demos/app-walkthrough.mp4` | ~35s | Browser walkthrough of demo app | `/record-demo` or Playwright |
 | `remotion/public/narrator.mp4` | ~2:30 | Optional narrator PiP video | Record yourself speaking the script |
 
 ### GIF Conversion Command
 
 ```bash
-ffmpeg -i assets/claude-code-install.gif \
+ffmpeg -i assets/antigravity-code-install.gif \
   -movflags faststart \
   -pix_fmt yuv420p \
   -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" \
@@ -66,8 +66,8 @@ These assets are tracked in the repo:
 |------|--------|
 | `remotion/public/images/ds-logo.png` | ✅ Included |
 | `remotion/public/images/embedded-app-icon.png` | ✅ Included |
-| `assets/claude-code-install.gif` | ✅ Included (needs conversion) |
-| `assets/claude-desktop-install.gif` | ✅ Included (alternative) |
+| `assets/antigravity-code-install.gif` | ✅ Included (needs conversion) |
+| `assets/antigravity-desktop-install.gif` | ✅ Included (alternative) |
 
 ## Directory Structure After Assets
 

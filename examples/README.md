@@ -6,7 +6,7 @@ Curated showcase projects demonstrating toolkit capabilities.
 
 | Example | Template | Contributor | Description |
 |---------|----------|-------------|-------------|
-| digital-samba-skill-demo | product-demo | [Digital Samba](https://digitalsamba.com) | Marketing video for Claude Code skill |
+| digital-samba-skill-demo | product-demo | [Digital Samba](https://digitalsamba.com) | Marketing video for Google Antigravity skill |
 | sprint-review-cho-oyu | sprint-review | [Digital Samba](https://digitalsamba.com) | iOS sprint review for Digital Samba Mobile |
 
 > **Note:** Examples include configs and documentation, but NOT large media files. See each example's `ASSETS-NEEDED.md` for what to create.

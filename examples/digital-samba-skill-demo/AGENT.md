@@ -1,8 +1,8 @@
-# CLAUDE.md - Digital Samba Skill Demo Video
+# AGENT.md - Digital Samba Skill Demo Video
 
 ## Project Overview
 
-Marketing/blog video demonstrating the Digital Samba Claude Code skill. Shows the journey from skill installation to a working video conferencing app.
+Marketing/blog video demonstrating the Digital Samba Google Antigravity skill. Shows the journey from skill installation to a working video conferencing app.
 
 ## Related Projects
 
@@ -31,8 +31,8 @@ Marketing/blog video demonstrating the Digital Samba Claude Code skill. Shows th
 ### Existing Assets
 ```
 assets/
-├── claude-code-install.gif      # Skill installation (1008x627)
-├── claude-desktop-install.gif   # Alternative install (600x296)
+├── antigravity-code-install.gif      # Skill installation (1008x627)
+├── antigravity-desktop-install.gif   # Alternative install (600x296)
 ```
 
 ### Assets to Generate
@@ -102,7 +102,7 @@ python generate_audio.py voiceover    # Just voiceover
 python generate_audio.py music        # Just background music
 
 # Convert GIFs
-ffmpeg -i assets/claude-code-install.gif -movflags faststart -pix_fmt yuv420p remotion/public/demos/skill-install.mp4
+ffmpeg -i assets/antigravity-code-install.gif -movflags faststart -pix_fmt yuv420p remotion/public/demos/skill-install.mp4
 
 # Preview video
 cd remotion && npm run studio

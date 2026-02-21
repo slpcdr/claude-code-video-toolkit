@@ -1,6 +1,6 @@
-# Contributing to claude-code-video-toolkit
+# Contributing to antigravity-video-toolkit
 
-Thank you for your interest in contributing! This toolkit is designed to help people create videos with Claude Code assistance.
+Thank you for your interest in contributing! This toolkit is designed to help people create videos with Google Antigravity assistance.
 
 ## Ways to Contribute
 
@@ -29,8 +29,8 @@ Thank you for your interest in contributing! This toolkit is designed to help pe
 ## Project Structure
 
 ```
-├── .claude/skills/     # Domain knowledge for Claude Code
-├── .claude/commands/   # Guided workflow commands
+├── .agents/skills/     # Domain knowledge for Google Antigravity
+├── .agents/commands/   # Guided workflow commands
 ├── tools/              # Python CLI tools
 ├── templates/          # Video templates
 ├── brands/             # Brand profiles
@@ -48,20 +48,20 @@ Thank you for your interest in contributing! This toolkit is designed to help pe
 
 ## Adding a New Skill
 
-1. Create a folder in `.claude/skills/`
+1. Create a folder in `.agents/skills/`
 2. Add `SKILL.md` with the skill definition
 3. Optionally add `reference.md` for detailed docs
 4. Register it in `_internal/toolkit-registry.json`
 5. **Update documentation** (see checklist below)
-6. Test by asking Claude Code questions about the domain
+6. Test by asking Google Antigravity questions about the domain
 
 ## Adding a New Command
 
-1. Create a markdown file in `.claude/commands/`
+1. Create a markdown file in `.agents/commands/`
 2. Follow the existing command format
 3. Register it in `_internal/toolkit-registry.json`
 4. **Update documentation** (see checklist below)
-5. Test by running the command in Claude Code
+5. Test by running the command in Google Antigravity
 
 ## Documentation Checklist
 
@@ -69,15 +69,15 @@ When adding or modifying commands, skills, or templates, update these files:
 
 | What Changed | Update These Files |
 |--------------|-------------------|
-| New command | `README.md` (Commands table), `CLAUDE.md` (Commands section) |
-| New skill | `README.md` (Skills table), `CLAUDE.md` (Skills Reference) |
-| New template | `README.md` (Templates section), `CLAUDE.md` (Templates section) |
-| New component | `CLAUDE.md` (Shared Components table) |
+| New command | `README.md` (Commands table), `AGENT.md` (Commands section) |
+| New skill | `README.md` (Skills table), `AGENT.md` (Skills Reference) |
+| New template | `README.md` (Templates section), `AGENT.md` (Templates section) |
+| New component | `AGENT.md` (Shared Components table) |
 | New transition | `README.md` (Scene Transitions), `lib/transitions/README.md` |
 
 **Quick verification:** After adding a command, grep for it across docs:
 ```bash
-grep -r "/your-command" README.md CLAUDE.md
+grep -r "/your-command" README.md AGENT.md
 ```
 
 ## Code Style

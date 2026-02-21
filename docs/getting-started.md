@@ -1,10 +1,10 @@
 # Getting Started
 
-This guide will help you create your first video using the claude-code-video-toolkit.
+This guide will help you create your first video using the antigravity-video-toolkit.
 
 ## Prerequisites
 
-- [Claude Code](https://claude.ai/code) CLI installed
+- [Google Antigravity](https://antigravity.ai/code) CLI installed
 - [Node.js](https://nodejs.org/) 18+
 - [Python](https://python.org/) 3.9+ (for audio tools)
 - [FFmpeg](https://ffmpeg.org/) installed
@@ -14,8 +14,8 @@ This guide will help you create your first video using the claude-code-video-too
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/digitalsamba/claude-code-video-toolkit.git
-   cd claude-code-video-toolkit
+   git clone https://github.com/digitalsamba/antigravity-video-toolkit.git
+   cd antigravity-video-toolkit
    ```
 
 2. **Create environment file**
@@ -31,9 +31,9 @@ This guide will help you create your first video using the claude-code-video-too
    pip install -r tools/requirements.txt
    ```
 
-4. **Start Claude Code**
+4. **Start Google Antigravity**
    ```bash
-   claude
+   antigravity
    ```
 
 ## Your First Video
@@ -102,7 +102,7 @@ After creating a project, you'll have:
 ```
 projects/my-video/
 ├── project.json           # Project state (phase, scenes, assets)
-├── CLAUDE.md              # Auto-generated status for Claude Code
+├── AGENT.md              # Auto-generated status for Google Antigravity
 ├── VOICEOVER-SCRIPT.md    # Narration script with asset markers
 ├── src/
 │   ├── config/
@@ -119,7 +119,7 @@ projects/my-video/
 
 ## Multi-Session Workflow
 
-Projects can span multiple Claude Code sessions. The `/video` command tracks progress:
+Projects can span multiple Google Antigravity sessions. The `/video` command tracks progress:
 
 ```
 /video

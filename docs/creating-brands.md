@@ -2,7 +2,7 @@
 
 Brand profiles let you maintain consistent visual identity across videos. Each brand defines colors, fonts, and voice settings.
 
-> **Quick Start:** Run `/brand` in Claude Code to create a brand interactively. It can extract colors from a website URL, generate a palette from a single color, or let you specify colors manually.
+> **Quick Start:** Run `/brand` in Google Antigravity to create a brand interactively. It can extract colors from a website URL, generate a palette from a single color, or let you specify colors manually.
 
 ## Brand Structure
 

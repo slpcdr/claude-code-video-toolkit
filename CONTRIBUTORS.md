@@ -1,6 +1,6 @@
 # Contributors
 
-Thank you to everyone who has contributed to claude-code-video-toolkit!
+Thank you to everyone who has contributed to antigravity-video-toolkit!
 
 ## Organizations
 
@@ -29,8 +29,8 @@ Your name/organization and website will be credited in:
 Submit a PR and you'll be added to the contributors list.
 
 **Report issues or suggest features:**
-Open an issue at [github.com/digitalsamba/claude-code-video-toolkit/issues](https://github.com/digitalsamba/claude-code-video-toolkit/issues)
+Open an issue at [github.com/digitalsamba/antigravity-video-toolkit/issues](https://github.com/digitalsamba/antigravity-video-toolkit/issues)
 
 ---
 
-*Built with Claude Code* 🤖
+*Built with Google Antigravity* 🤖

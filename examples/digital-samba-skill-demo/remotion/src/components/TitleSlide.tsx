@@ -63,7 +63,7 @@ export const TitleSlide: React.FC = () => {
           gap: 40,
         }}
       >
-        {/* Dual Logos: Claude + Digital Samba */}
+        {/* Dual Logos: Antigravity + Digital Samba */}
         <div
           style={{
             display: "flex",
@@ -73,7 +73,7 @@ export const TitleSlide: React.FC = () => {
             transform: `scale(${dsLogoScale})`,
           }}
         >
-          {/* Claude Logo */}
+          {/* Antigravity Logo */}
           <div
             style={{
               display: "flex",
@@ -82,7 +82,7 @@ export const TitleSlide: React.FC = () => {
             }}
           >
             <Img
-              src={staticFile("images/claude-icon.webp")}
+              src={staticFile("images/antigravity-icon.webp")}
               style={{
                 width: 80,
                 height: 80,
@@ -96,7 +96,7 @@ export const TitleSlide: React.FC = () => {
                 color: "#D97706",
               }}
             >
-              Claude
+              Antigravity
             </span>
           </div>
 
@@ -177,7 +177,7 @@ export const TitleSlide: React.FC = () => {
             transform: `translateY(${subtitleY}px)`,
           }}
         >
-          Build video features into your apps faster with Digital Samba and Claude
+          Build video features into your apps faster with Digital Samba and Antigravity
         </p>
       </div>
     </AbsoluteFill>

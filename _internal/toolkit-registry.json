@@ -1,12 +1,12 @@
 {
-  "name": "claude-code-video-toolkit",
+  "name": "antigravity-video-toolkit",
   "version": "0.10.0",
-  "description": "AI-native video production workspace for Claude Code",
-  "repository": "https://github.com/digitalsamba/claude-code-video-toolkit",
+  "description": "AI-native video production workspace for Google Antigravity",
+  "repository": "https://github.com/digitalsamba/antigravity-video-toolkit",
 
   "skills": {
     "remotion-official": {
-      "path": ".claude/skills/remotion-official/",
+      "path": ".agents/skills/remotion-official/",
       "description": "Official Remotion framework knowledge (synced from remotion-dev/skills)",
       "status": "stable",
       "upstream": "https://github.com/remotion-dev/skills",
@@ -14,42 +14,42 @@
       "updated": "2026-02-19"
     },
     "remotion": {
-      "path": ".claude/skills/remotion/",
+      "path": ".agents/skills/remotion/",
       "description": "Toolkit-specific Remotion patterns — custom transitions, shared components, conventions",
       "status": "stable",
       "created": "2025-12-04",
       "updated": "2026-02-19"
     },
     "elevenlabs": {
-      "path": ".claude/skills/elevenlabs/",
+      "path": ".agents/skills/elevenlabs/",
       "description": "ElevenLabs audio - TTS, voice cloning, music, SFX",
       "status": "stable",
       "created": "2025-12-04",
       "updated": "2025-12-04"
     },
     "ffmpeg": {
-      "path": ".claude/skills/ffmpeg/",
+      "path": ".agents/skills/ffmpeg/",
       "description": "FFmpeg video/audio processing for Remotion assets",
       "status": "beta",
       "created": "2025-12-08",
       "updated": "2025-12-09"
     },
     "playwright-recording": {
-      "path": ".claude/skills/playwright-recording/",
+      "path": ".agents/skills/playwright-recording/",
       "description": "Playwright browser recording for demo videos",
       "status": "beta",
       "created": "2025-12-08",
       "updated": "2025-12-10"
     },
     "frontend-design": {
-      "path": ".claude/skills/frontend-design/",
+      "path": ".agents/skills/frontend-design/",
       "description": "Visual design refinement for distinctive, production-grade aesthetics",
       "status": "stable",
       "created": "2025-12-10",
       "updated": "2025-12-13"
     },
     "qwen-edit": {
-      "path": ".claude/skills/qwen-edit/",
+      "path": ".agents/skills/qwen-edit/",
       "description": "AI image editing prompting patterns and best practices for Qwen-Image-Edit",
       "status": "stable",
       "category": "image-editing",
@@ -61,77 +61,77 @@
 
   "commands": {
     "video": {
-      "path": ".claude/commands/video.md",
+      "path": ".agents/commands/video.md",
       "description": "Video projects - list, resume, or create new",
       "status": "stable",
       "created": "2025-12-09",
       "updated": "2025-12-09"
     },
     "brand": {
-      "path": ".claude/commands/brand.md",
+      "path": ".agents/commands/brand.md",
       "description": "Brand profiles - list, edit, or create new",
       "status": "stable",
       "created": "2025-12-09",
       "updated": "2025-12-09"
     },
     "template": {
-      "path": ".claude/commands/template.md",
+      "path": ".agents/commands/template.md",
       "description": "List available templates and their features",
       "status": "stable",
       "created": "2025-12-09",
       "updated": "2025-12-09"
     },
     "skills": {
-      "path": ".claude/commands/skills.md",
+      "path": ".agents/commands/skills.md",
       "description": "List installed skills or create new ones",
       "status": "stable",
       "created": "2025-12-10",
       "updated": "2025-12-10"
     },
     "record-demo": {
-      "path": ".claude/commands/record-demo.md",
+      "path": ".agents/commands/record-demo.md",
       "description": "Guided Playwright recording with interactive or script mode",
       "status": "stable",
       "created": "2025-12-08",
       "updated": "2025-12-10"
     },
     "generate-voiceover": {
-      "path": ".claude/commands/generate-voiceover.md",
+      "path": ".agents/commands/generate-voiceover.md",
       "description": "Generate TTS voiceover using ElevenLabs or Qwen3-TTS",
       "status": "stable",
       "created": "2025-12-08",
       "updated": "2026-02-19"
     },
     "contribute": {
-      "path": ".claude/commands/contribute.md",
+      "path": ".agents/commands/contribute.md",
       "description": "Share improvements - issues, PRs, skills, templates",
       "status": "stable",
       "created": "2025-12-10",
       "updated": "2025-12-10"
     },
     "scene-review": {
-      "path": ".claude/commands/scene-review.md",
+      "path": ".agents/commands/scene-review.md",
       "description": "Scene-by-scene review in Remotion Studio before voiceover",
       "status": "stable",
       "created": "2025-12-10",
       "updated": "2025-12-10"
     },
     "design": {
-      "path": ".claude/commands/design.md",
+      "path": ".agents/commands/design.md",
       "description": "Focused design refinement session for a scene",
       "status": "stable",
       "created": "2025-12-10",
       "updated": "2025-12-13"
     },
     "versions": {
-      "path": ".claude/commands/versions.md",
+      "path": ".agents/commands/versions.md",
       "description": "Check dependency versions and toolkit updates",
       "status": "stable",
       "created": "2025-12-20",
       "updated": "2025-12-20"
     },
     "redub": {
-      "path": ".claude/commands/redub.md",
+      "path": ".agents/commands/redub.md",
       "description": "Redub video with a different voice (transcribe + TTS)",
       "status": "beta",
       "created": "2025-12-28",

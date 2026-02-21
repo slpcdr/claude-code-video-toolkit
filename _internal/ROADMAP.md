@@ -1,17 +1,17 @@
 # Video Toolkit Roadmap
 
-This document tracks the development of claude-code-video-toolkit.
+This document tracks the development of antigravity-video-toolkit.
 
-**Repository:** https://github.com/digitalsamba/claude-code-video-toolkit
+**Repository:** https://github.com/digitalsamba/antigravity-video-toolkit
 
 ---
 
 ## Vision
 
-An open-source, AI-native video production workspace for Claude Code, featuring:
+An open-source, AI-native video production workspace for Google Antigravity, featuring:
 - Reusable templates for common video types
 - Brand profiles for consistent visual identity
-- Claude skills providing deep domain knowledge
+- Antigravity skills providing deep domain knowledge
 - Automated asset pipelines (recording, conversion, audio generation)
 - Slash commands for guided workflows
 
@@ -84,7 +84,7 @@ An open-source, AI-native video production workspace for Claude Code, featuring:
 - [x] Custom presentations: glitch, rgbSplit, zoomBlur, lightLeak, clockWipe, pixelate, checkerboard
 - [x] Re-exports official transitions: slide, fade, wipe, flip
 - [x] Transitions gallery showcase (`showcase/transitions/`)
-- [x] Documentation in Remotion skill and CLAUDE.md
+- [x] Documentation in Remotion skill and AGENT.md
 
 **Template-Brand Integration:**
 - [x] Brand loader utility (`lib/brand.ts`)
@@ -94,7 +94,7 @@ An open-source, AI-native video production workspace for Claude Code, featuring:
 **Multi-Session Project System:**
 - [x] Project schema (`lib/project/types.ts`)
 - [x] Filesystem reconciliation
-- [x] Auto-generated CLAUDE.md per project
+- [x] Auto-generated AGENT.md per project
 - [x] `/skills` command
 
 **Review & Validation:**
@@ -107,7 +107,7 @@ An open-source, AI-native video production workspace for Claude Code, featuring:
 - [ ] Pre-render review (timing, sync, polish)
 - [ ] Asset validation (ffprobe checks)
 - [ ] Enhancement suggestions
-- Note: `/review` name clashes with Claude Code built-in PR review - using `/scene-review`
+- Note: `/review` name clashes with Google Antigravity built-in PR review - using `/scene-review`
 
 **Contribution & Examples:**
 - [x] `/contribute` command
@@ -118,7 +118,7 @@ An open-source, AI-native video production workspace for Claude Code, featuring:
 - [x] Test new project creation with scene-centric flow
 - [ ] Test project resumption (multi-session)
 - [ ] Verify filesystem reconciliation
-- [x] Verify CLAUDE.md auto-generation
+- [x] Verify AGENT.md auto-generation
 
 ### Phase 4: Polish & Advanced
 

@@ -2,7 +2,7 @@
 
 **Skill:** playwright-recording
 **Status:** draft → beta (fixes applied)
-**Reviewer:** Claude
+**Reviewer:** Antigravity
 **Date:** 2025-12-09
 
 ## Executive Summary

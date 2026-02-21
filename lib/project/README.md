@@ -4,16 +4,16 @@ This directory contains the schema and documentation for multi-session video pro
 
 ## Overview
 
-Video projects span multiple Claude Code sessions. The project system provides:
+Video projects span multiple Google Antigravity sessions. The project system provides:
 
 1. **Structured state** via `project.json` in each project
 2. **Filesystem reconciliation** - comparing intent vs reality
 3. **Session continuity** - instant context on resume
-4. **Auto-generated CLAUDE.md** - human+Claude readable status
+4. **Auto-generated AGENT.md** - human+Antigravity readable status
 
 ## Resuming a Project
 
-Projects persist across Claude Code sessions. To resume:
+Projects persist across Google Antigravity sessions. To resume:
 
 ### Quick Resume
 
@@ -72,7 +72,7 @@ Ready to record the export demo?
 2. **Reconcile filesystem**: Compare expected assets vs actual files in `public/demos/`, `public/audio/`
 3. **Update status**: Mark newly-found assets as `asset-present`, flag missing assets
 4. **Add session entry**: `{ date: "2024-12-11", summary: "Resumed project" }`
-5. **Regenerate CLAUDE.md**: Update the project's status document
+5. **Regenerate AGENT.md**: Update the project's status document
 6. **Present next actions**: Guide user to what needs doing
 
 ### Project Files Used for Context
@@ -80,7 +80,7 @@ Ready to record the export demo?
 | File | Purpose |
 |------|---------|
 | `project.json` | Machine-readable state (phase, scenes, assets, sessions) |
-| `CLAUDE.md` | Auto-generated human-readable status |
+| `AGENT.md` | Auto-generated human-readable status |
 | `VOICEOVER-SCRIPT.md` | Scene-by-scene narration script |
 | `public/demos/*.mp4` | Recorded demo assets |
 | `public/audio/*.mp3` | Voiceover and music files |
@@ -95,7 +95,7 @@ npm run studio    # Open Remotion Studio
 npm run render    # Render final video
 ```
 
-Claude Code will still have context via the project's `CLAUDE.md`.
+Google Antigravity will still have context via the project's `AGENT.md`.
 
 ## Project Lifecycle
 
@@ -158,7 +158,7 @@ The project system follows these principles:
 
 1. **project.json is intent** - What the user planned
 2. **Filesystem is truth** - What actually exists
-3. **Claude reconciles** - Updates status based on reality
+3. **Antigravity reconciles** - Updates status based on reality
 
 ### Reconciliation Logic
 
@@ -179,7 +179,7 @@ For each scene with visual.asset:
 
 ## Session History
 
-The `sessions` array tracks work across Claude Code sessions:
+The `sessions` array tracks work across Google Antigravity sessions:
 
 ```json
 "sessions": [
@@ -189,11 +189,11 @@ The `sessions` array tracks work across Claude Code sessions:
 ]
 ```
 
-This helps Claude understand context when resuming.
+This helps Antigravity understand context when resuming.
 
-## Auto-Generated CLAUDE.md
+## Auto-Generated AGENT.md
 
-Each project gets an auto-generated `CLAUDE.md` with:
+Each project gets an auto-generated `AGENT.md` with:
 
 - Current phase and status
 - Scene checklist with ✅/⬜ markers

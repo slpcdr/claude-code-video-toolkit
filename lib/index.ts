@@ -1,5 +1,5 @@
 /**
- * claude-code-video-toolkit shared library
+ * antigravity-video-toolkit shared library
  *
  * This library provides reusable components and utilities for video templates.
  *

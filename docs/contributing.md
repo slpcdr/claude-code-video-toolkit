@@ -1,19 +1,19 @@
-# Contributing to claude-code-video-toolkit
+# Contributing to antigravity-video-toolkit
 
 This toolkit is designed to grow through use. Every interaction is an opportunity to improve.
 
 ## How to Contribute
 
-### Local Users (working with Claude Code)
+### Local Users (working with Google Antigravity)
 
-1. **Tell Claude** - Just say "I have feedback" or "this could be better"
-2. **Claude captures it** - Ideas go to `_internal/BACKLOG.md`, bugs get fixed
+1. **Tell Antigravity** - Just say "I have feedback" or "this could be better"
+2. **Antigravity captures it** - Ideas go to `_internal/BACKLOG.md`, bugs get fixed
 3. **Patterns emerge** - Common needs become new features
 4. **Submit upstream** - `gh pr create` to share with others
 
 ### Remote Contributors (via GitHub)
 
-- **Issues**: [github.com/digitalsamba/claude-code-video-toolkit/issues](https://github.com/digitalsamba/claude-code-video-toolkit/issues)
+- **Issues**: [github.com/digitalsamba/antigravity-video-toolkit/issues](https://github.com/digitalsamba/antigravity-video-toolkit/issues)
   - Bug reports, feature requests, questions
 - **Pull Requests**: Fork, improve, submit PR
   - New templates, skills, commands
@@ -57,7 +57,7 @@ Every session teaches the toolkit something:
 | **Bugs** | Fix immediately or document in BACKLOG.md |
 | **Ideas** | Capture in BACKLOG.md under appropriate section |
 | **Documentation** | Update relevant skill, command, or docs/ |
-| **Workflow** | Update commands or CLAUDE.md |
+| **Workflow** | Update commands or AGENT.md |
 | **Templates** | Add to BACKLOG.md → Templates section |
 
 **Important:** When adding commands, skills, or templates, follow the [Documentation Checklist](../CONTRIBUTING.md#documentation-checklist) to ensure all docs stay in sync.
@@ -74,7 +74,7 @@ git status
 git checkout -b improve/description
 
 # 3. Stage only toolkit files (projects/ is ignored automatically)
-git add .claude/ templates/ lib/ docs/ _internal/
+git add .agents/ templates/ lib/ docs/ _internal/
 
 # 4. Commit
 git commit -m "Improve: description"
@@ -89,11 +89,11 @@ If you want to be extra careful:
 
 ```bash
 # Clone fresh
-git clone https://github.com/digitalsamba/claude-code-video-toolkit ~/toolkit-contrib
+git clone https://github.com/digitalsamba/antigravity-video-toolkit ~/toolkit-contrib
 cd ~/toolkit-contrib
 
 # Copy only the files you improved
-cp -r /path/to/your/work/.claude/commands/improved-command.md .claude/commands/
+cp -r /path/to/your/work/.agents/commands/improved-command.md .agents/commands/
 
 # Commit and PR
 git checkout -b improve/description
@@ -108,8 +108,8 @@ gh pr create
 
 | Directory | Shared? | Contains |
 |-----------|---------|----------|
-| `.claude/commands/` | Yes | Slash commands |
-| `.claude/skills/` | Yes | Skill documentation |
+| `.agents/commands/` | Yes | Slash commands |
+| `.agents/skills/` | Yes | Skill documentation |
 | `templates/` | Yes | Video templates |
 | `lib/` | Yes | Shared components |
 | `docs/` | Yes | Documentation |

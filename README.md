@@ -1,12 +1,12 @@
-# claude-code-video-toolkit
+# antigravity-video-toolkit
 
-[![GitHub release](https://img.shields.io/github/v/release/digitalsamba/claude-code-video-toolkit)](https://github.com/digitalsamba/claude-code-video-toolkit/releases)
+[![GitHub release](https://img.shields.io/github/v/release/digitalsamba/antigravity-video-toolkit)](https://github.com/digitalsamba/antigravity-video-toolkit/releases)
 
-An AI-native video production workspace for [Claude Code](https://claude.ai/code). Create professional videos with AI assistance — from concept to final render.
+An AI-native video production workspace for [Google Antigravity](https://antigravity.ai/code). Create professional videos with AI assistance — from concept to final render.
 
 ## What is this?
 
-This toolkit gives Claude Code the knowledge and tools to help you create videos:
+This toolkit gives Google Antigravity the knowledge and tools to help you create videos:
 
 - **Skills** — Domain expertise in Remotion, ElevenLabs, FFmpeg, Playwright
 - **Commands** — Guided workflows like `/video`, `/record-demo`, `/contribute`
@@ -14,13 +14,13 @@ This toolkit gives Claude Code the knowledge and tools to help you create videos
 - **Brands** — Visual identity profiles (colors, fonts, voice settings)
 - **Tools** — Python CLI for audio generation
 
-Clone this repo, open it in Claude Code, and start creating videos.
+Clone this repo, open it in Google Antigravity, and start creating videos.
 
 ## Quick Start
 
 ### Prerequisites
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed
+- [Google Antigravity](https://docs.anthropic.com/en/docs/antigravity-code) installed
 - [Node.js](https://nodejs.org/) 18+
 - [Python](https://python.org/) 3.9+
 - [FFmpeg](https://ffmpeg.org/)
@@ -31,8 +31,8 @@ Clone this repo, open it in Claude Code, and start creating videos.
 
 ```bash
 # Clone the toolkit
-git clone https://github.com/digitalsamba/claude-code-video-toolkit.git
-cd claude-code-video-toolkit
+git clone https://github.com/digitalsamba/antigravity-video-toolkit.git
+cd antigravity-video-toolkit
 
 # Set up environment
 cp .env.example .env
@@ -43,13 +43,13 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r tools/requirements.txt
 
-# Start Claude Code
-claude
+# Start Google Antigravity
+antigravity
 ```
 
 ### Create Your First Video
 
-In Claude Code, run:
+In Google Antigravity, run:
 
 ```
 /video
@@ -64,13 +64,13 @@ This will:
 
 **Multi-session support:** Projects span multiple sessions. Run `/video` to resume where you left off.
 
-Then iterate with Claude Code to record demos, refine content, and render.
+Then iterate with Google Antigravity to record demos, refine content, and render.
 
 ## Features
 
 ### Skills
 
-Claude Code has deep knowledge in:
+Google Antigravity has deep knowledge in:
 
 | Skill | Description |
 |-------|-------------|
@@ -97,7 +97,7 @@ Claude Code has deep knowledge in:
 | `/redub` | Redub existing video with a different voice |
 | `/versions` | Check dependency versions and toolkit updates |
 
-> **Note:** After creating or modifying commands/skills, restart Claude Code to load changes.
+> **Note:** After creating or modifying commands/skills, restart Google Antigravity to load changes.
 
 ### Templates
 
@@ -111,7 +111,7 @@ See `examples/` for finished projects you can learn from (oldest first, showing 
 | Date | Demo | Description |
 |------|------|-------------|
 | 2025-12-05 | [sprint-review-cho-oyu](https://demos.digitalsamba.com/video/sprint-review.mp4) | iOS sprint review with demos |
-| 2025-12-10 | [digital-samba-skill-demo](https://demos.digitalsamba.com/video/digital-samba-skill-demo.mp4) | Product demo showcasing Claude Code skill |
+| 2025-12-10 | [digital-samba-skill-demo](https://demos.digitalsamba.com/video/digital-samba-skill-demo.mp4) | Product demo showcasing Google Antigravity skill |
 | 2026-01-22 | [ds-remote-mcp](https://demos.digitalsamba.com/video/ds-remote-mcp.mp4) | Remote MCP server demo *(the jazz background music is a joke)* |
 | 2026-01-25 | [schlumbergera](https://demos.digitalsamba.com/video/schlumbergera.mp4) | Android sprint review video |
 
@@ -164,10 +164,10 @@ planning → assets → review → audio → editing → rendering → complete
 Each project has a `project.json` that tracks:
 - **Scenes** — What to show, asset status, visual types
 - **Audio** — Voiceover and music status
-- **Sessions** — Work history across Claude Code sessions
+- **Sessions** — Work history across Google Antigravity sessions
 - **Phase** — Current stage in the workflow
 
-The system automatically reconciles intent (what you planned) with reality (what files exist), and generates a `CLAUDE.md` per project for instant context when resuming.
+The system automatically reconciles intent (what you planned) with reality (what files exist), and generates a `AGENT.md` per project for instant context when resuming.
 
 See [lib/project/README.md](lib/project/README.md) for schema details, scene status tracking, and filesystem reconciliation logic.
 
@@ -241,9 +241,9 @@ Dockerfiles and handlers are in `docker/`. Run `python tools/<tool>.py --setup` 
 ## Project Structure
 
 ```
-claude-code-video-toolkit/
-├── .claude/
-│   ├── skills/          # Domain knowledge for Claude
+antigravity-video-toolkit/
+├── .agents/
+│   ├── skills/          # Domain knowledge for Antigravity
 │   └── commands/        # Slash commands (/video, /brand, etc.)
 ├── lib/                 # Shared components, theme system, utilities
 │   ├── components/      # Reusable video components (9 components)
@@ -285,7 +285,7 @@ claude-code-video-toolkit/
 6. **Generate audio** — AI voiceover with `/generate-voiceover`
 7. **Configure** — Update config file with asset paths and timing
 8. **Preview** — `npm run studio` for live preview
-9. **Iterate** — Work with Claude Code to adjust timing, styling, content
+9. **Iterate** — Work with Google Antigravity to adjust timing, styling, content
 10. **Render** — `npm run render` for final MP4
 
 ## Contributing
@@ -298,4 +298,4 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-Built for use with [Claude Code](https://claude.ai/code) by Anthropic.
+Built for use with [Google Antigravity](https://antigravity.ai/code) by Anthropic.
